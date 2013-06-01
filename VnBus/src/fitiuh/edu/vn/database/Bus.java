@@ -79,19 +79,114 @@ public class Bus implements KvmSerializable  {
 
 	@Override
 	public int getPropertyCount() {
-		
-		return 0;
+		return 13;
 	}
 
 	@Override
 	public void getPropertyInfo(int arg0, Hashtable arg1, PropertyInfo arg2) {
-		
+		switch(arg0)
+		{
+		case 0:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="STRETCH_ROAD";
+			break;
+		case 1:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="ADMIN_ACTIVITY";
+			break;
+		case 2:
+			arg2.type=PropertyInfo.INTEGER_CLASS;
+			arg2.name="TICKET_FACE";
+			break;
+		case 3:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="SPACE_TRIP";
+			break;
+		case 4:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="FORM_ACTIVITY";
+			break;
+		case 5:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="FORM_BUS";
+			break;
+		case 6:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="OUTWARD_JOURNEY";
+			break;
+		case 7:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="RETURN_JOURNEY";
+			break;
+		case 8:
+			arg2.type=PropertyInfo.INTEGER_CLASS;
+			arg2.name="NUMBER_BUS";
+			break;
+		case 9:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="COUNT_TRIP";
+			break;
+		case 10:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="NAME_BUS";
+			break;
+		case 11:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="TIME_TRIP";
+			break;
+		case 12:
+			arg2.type=PropertyInfo.STRING_CLASS;
+			arg2.name="START_END";
+			break;
+		}
 		
 	}
 
 	@Override
 	public void setProperty(int arg0, Object arg1) {
-		
+		switch(arg0){
+		case 0:
+			STRETCH_ROAD=arg1.toString();
+			break;
+		case 1:
+			ADMIN_ACTIVITY=arg1.toString();
+			break;
+		case 2:
+			TICKET_FACE=Integer.parseInt(arg1.toString());
+			break;
+		case 3:
+			SPACE_TRIP=arg1.toString();
+			break;
+		case 4:
+			FORM_ACTIVITY=arg1.toString();
+			break;
+		case 5:
+			FORM_BUS=arg1.toString();
+			break;
+		case 6:
+			OUTWARD_JOURNEY=arg1.toString();
+			break;
+		case 7:
+			RETURN_JOURNEY=arg1.toString();
+			break;
+		case 8:
+			NUMBER_BUS=Integer.parseInt(arg1.toString());
+			break;
+		case 9:
+			COUNT_TRIP=arg1.toString();
+			break;
+		case 10:
+			NAME_BUS=arg1.toString();
+			break;
+		case 11:
+			TIME_TRIP=arg1.toString();
+			break;
+		case 12:
+			START_END=arg1.toString();
+			break;
+		default:
+			break;
+		}
 		
 	}
 
