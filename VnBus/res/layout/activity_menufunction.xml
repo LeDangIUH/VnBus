@@ -1,0 +1,119 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Menufunction" >
+
+    <TextView
+        android:id="@+id/txtShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImgShare"
+        android:layout_below="@+id/ImgShare"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="16dp"
+        android:text="Chia Sẻ" />
+
+    <ImageButton
+        android:id="@+id/imgBookmarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/ImgShare"
+        android:layout_marginRight="59dp"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/ImgShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="49dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/txtBookmarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtShare"
+        android:layout_alignBottom="@+id/txtShare"
+        android:layout_alignLeft="@+id/imgBookmarks"
+        android:text="Bookmarks" />
+
+    <ImageButton
+        android:id="@+id/imgSetup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/txtBookmarks"
+        android:layout_marginBottom="83dp"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/ImgSearchs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgRouterlist"
+        android:layout_alignTop="@+id/imgSetup"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/txtSearchs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtSetup"
+        android:layout_alignBottom="@+id/txtSetup"
+        android:layout_alignLeft="@+id/ImgSearchs"
+        android:text="Tìm kiếm" />
+
+    <ImageButton
+        android:id="@+id/imgRouterlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImgShare"
+        android:layout_below="@+id/txtShare"
+        android:layout_marginTop="39dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/txtRouterlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgRouterlist"
+        android:layout_below="@+id/imgRouterlist"
+        android:layout_marginTop="27dp"
+        android:text="Danh sách" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/txtBookmarks"
+        android:layout_alignTop="@+id/imgRouterlist"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtRouterlist"
+        android:layout_alignBottom="@+id/txtRouterlist"
+        android:layout_alignLeft="@+id/txtBookmarks"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/txtSetup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/ImgSearchs"
+        android:layout_marginTop="21dp"
+        android:text="Cài Đặt" />
+    
+</RelativeLayout>
