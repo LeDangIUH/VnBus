@@ -48,18 +48,31 @@ public class Bus implements KvmSerializable  {
 	public Object getProperty(int arg0) {
 		switch(arg0){
 		case 0:
+			return STRETCH_ROAD;
 		case 1:
+			return 	ADMIN_ACTIVITY;
 		case 2:
-		case 3: 
+			return TICKET_FACE;
+		case 3:
+			return SPACE_TRIP;
 		case 4:
+			return FORM_ACTIVITY;
 		case 5:
+			return FORM_BUS;
 		case 6:
+			return OUTWARD_JOURNEY;
 		case 7:
+			return RETURN_JOURNEY;
 		case 8:
+			return NUMBER_BUS;
 		case 9:
+			return COUNT_TRIP;
 		case 10:
+			return NAME_BUS;
 		case 11:
+			return TIME_TRIP;
 		case 12:
+			return START_END;
 		}
 		return null;
 	}
