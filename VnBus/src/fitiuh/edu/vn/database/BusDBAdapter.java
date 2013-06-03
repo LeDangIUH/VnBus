@@ -139,7 +139,7 @@ public class BusDBAdapter {
 	}
 	
 	// Delete a row from the database, by rowId (primary key)
-	public boolean deleteRowOrdi(long rowId) {
+	public boolean deleteRowOrdi(int rowId) {
 		String where = KEY_ROWID + "=" + rowId;
 		return db.delete(DATABASE_TABLE3, where, null) != 0;
 	}
@@ -150,7 +150,7 @@ public class BusDBAdapter {
 		long rowId = c.getColumnIndexOrThrow(KEY_ROWID);
 		if (c.moveToFirst()) {
 			do {
-				deleteRowOrdi(c.getLong((int) rowId));				
+				deleteRowOrdi(c.getInt((int) rowId));		
 			} while (c.moveToNext());
 		}
 		c.close();
@@ -234,11 +234,12 @@ public class BusDBAdapter {
 		initialValues.put(KEY_BUSMONEY, GiaVe);
 		initialValues.put(KEY_BUSADMINISTRATE, DonViDamNhan);
 		initialValues.put(KEY_FORMBUS, Loaixe);
+		
 		return db.insert(DATABASE_TABLE, null, initialValues);
 	}
 	
 	// Delete a row from the database, by rowId (primary key)
-	public boolean deleteRow(long rowId) {
+	public boolean deleteRow(int rowId) {
 		String where = KEY_BUSNUMBER + "=" + rowId;
 		return db.delete(DATABASE_TABLE, where, null) != 0;
 	}
@@ -249,7 +250,7 @@ public class BusDBAdapter {
 		long rowId = c.getColumnIndexOrThrow(KEY_BUSNUMBER);
 		if (c.moveToFirst()) {
 			do {
-				deleteRow(c.getLong((int) rowId));				
+				deleteRow(c.getInt((int) rowId));				
 			} while (c.moveToNext());
 		}
 		c.close();
@@ -268,7 +269,7 @@ public class BusDBAdapter {
 	}
 	
 	// Get a specific row (by rowId)
-	public Cursor getRow(long rowId) {
+	public Cursor getRow(int rowId) {
 		String where = KEY_BUSNUMBER + "=" + rowId;
 		Cursor c = 	db.query(true, DATABASE_TABLE, ALL_KEYS, 
 								where, null, null, null, null, null);
@@ -279,7 +280,7 @@ public class BusDBAdapter {
 	}
 	
 	// Change an existing row to be equal to new data.
-	public boolean updateRow(long rowId,int _id, String TenTuyen, String LuotDi
+	public boolean updateRow(int rowId,int _id, String TenTuyen, String LuotDi
 			, String LuotVe, String LoaiHinhHoatDong, String CuLi
 			,String SoChuyen,String ThoiGianChuyen,String GianCach
 			,String ThoiGianHoatDong,int GiaVe,String DonViDamNhan, String LoaiXe) {

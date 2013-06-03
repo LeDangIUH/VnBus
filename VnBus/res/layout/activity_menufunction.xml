@@ -91,7 +91,7 @@
         android:text="Danh sách" />
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/imgaddfavou"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/txtBookmarks"
@@ -99,7 +99,7 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtNumOneRouter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/txtRouterlist"
@@ -111,7 +111,7 @@
         android:id="@+id/txtSetup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/txtNumOneRouter"
         android:layout_below="@+id/ImgSearchs"
         android:layout_marginTop="21dp"
         android:text="Cài Đặt" />
