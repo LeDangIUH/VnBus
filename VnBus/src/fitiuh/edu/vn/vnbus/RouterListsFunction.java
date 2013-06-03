@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.text.style.BulletSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ public class RouterListsFunction extends Activity {
 	BusDBAdapter myDb;
 	ListView lv;
 	TextView txt;
+	Bundle bundle;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +53,20 @@ public class RouterListsFunction extends Activity {
 				ImageButton dialogclearinfor=(ImageButton) dialog.findViewById(R.id.imgClearInfor);
 				ImageButton dialogmaprouter=(ImageButton) dialog.findViewById(R.id.Imgmaprouter);
 				ImageButton dialogbookmark=(ImageButton) dialog.findViewById(R.id.imgaddfavou);
-				txt=(TextView) dialog.findViewById(R.id.convertbusnumber);
+				
+				final int numberbus=SelectForNum((int)arg3);
+				final String namebus=SelectForName((int)arg3);
 				
 				dialogclearinfor.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
-						
-						
+						bundle=new Bundle();
+						bundle.putInt("Numberbus", numberbus);
+						bundle.putString("Namebus", namebus);
+						intent=new Intent(RouterListsFunction.this,RouterClearInfor.class);
+						intent.putExtra("Tobus", bundle);
+						startActivity(intent);
 					}
 				});
 				
@@ -80,7 +88,6 @@ public class RouterListsFunction extends Activity {
 					}
 				});
 				
-				txt.setText(String.valueOf(SelectForNum((int) arg3)));
 				dialog.show();
 				
 			}
