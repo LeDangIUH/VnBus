@@ -83,8 +83,8 @@ public class RouterListsFunction extends Activity {
 					
 					@Override
 					public void onClick(View v) {
-						
-						
+						myDb.insertRowFavour(numberbus, namebus);
+						dialog.dismiss();
 					}
 				});
 				
