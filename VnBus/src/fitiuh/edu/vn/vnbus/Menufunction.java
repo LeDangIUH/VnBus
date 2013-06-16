@@ -27,11 +27,12 @@ public class Menufunction extends Activity {
 	 * Get data from services
 	 */
 	Bus infor=new Bus();
+	Coordinate coordinate=new Coordinate();
 	//InetAddress ipAddress;
 	final String NAMESPACE="http://test_bus/";
-	final String METHOD_NAME="Update_Information";
-	final String SOAP_ACTION="http://test_bus/Update_Information";
-	final String URL="http://192.168.210.30:8080/BUS_PRO/Services?WSDL";
+	String METHOD_NAME;
+	String SOAP_ACTION;
+	final String URL="http://27.78.123.11:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 
 	@Override
@@ -46,7 +47,7 @@ public class Menufunction extends Activity {
 		IMG_SETUP=(ImageButton) findViewById(R.id.imgSetup);
 		
 		openDB();
-		CheckDB();
+		CheckDBBusInfor();
 		
 		IMG_SHARE.setOnClickListener(new OnClickListener() {
 			
@@ -113,18 +114,27 @@ public class Menufunction extends Activity {
 	/**
 	 * Check Data base for update
 	 */
-	public void CheckDB(){
+	public void CheckDBBusInfor(){
 		if(myDb.getAllRows().getCount()==0){
-			new backMethod().execute();
+			new backMethodInfor().execute();
+		}
+		
+		if(myDb.getAllOrdi().getCount()==0){
+			new backMethodCoordinate().execute();
 		}
 	}
 	
-	public class backMethod extends AsyncTask<SoapObject, SoapObject, SoapObject >{
+	//Start connect web service and pasing data to sqlite
+	public class backMethodInfor extends AsyncTask<SoapObject, SoapObject, SoapObject >{
+		
 
 		private final ProgressDialog dialog=new ProgressDialog(Menufunction.this);
 		
 		@Override
 		protected SoapObject doInBackground(SoapObject... params) {
+			
+			METHOD_NAME="Update_Information";
+			SOAP_ACTION="http://test_bus/Update_Information";
 			
 			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
@@ -152,7 +162,7 @@ public class Menufunction extends Activity {
 		@Override
 		protected void onPreExecute() {
 			
-			this.dialog.setMessage("Đang cập nhật dữ liệu.....");              
+			this.dialog.setMessage("Đang cập nhật dữ liệu cho bus.....");              
             this.dialog.show();
 		}
 		
@@ -202,6 +212,81 @@ public class Menufunction extends Activity {
 		
 	}
 	
+	//Connect Coordinate data in webservice and pasing sqlite data in mobile
+	public class backMethodCoordinate extends AsyncTask<SoapObject, SoapObject, SoapObject > {
+
+		private final ProgressDialog dialog=new ProgressDialog(Menufunction.this);
+		
+		@Override
+		protected SoapObject doInBackground(SoapObject... params) {
+
+			METHOD_NAME="Update_Location";
+			SOAP_ACTION="http://test_bus/Update_Location";
+			
+			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.setOutputSoapObject(request);
+            envelope.addMapping(NAMESPACE,"Coordinate",new Coordinate().getClass());
+            
+            try {
+
+                 AndroidHttpTransport androidHttpTransport = new AndroidHttpTransport(URL);
+                 
+                 androidHttpTransport.debug=true;
+
+                 androidHttpTransport.call(SOAP_ACTION, envelope);
+                                          
+                 response = (SoapObject)envelope.bodyIn;
+                                                                                                          
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+				
+			return response;
+		}
+
+		@Override
+		protected void onPreExecute() {
+
+			this.dialog.setMessage("Đang cập nhật dữ liệu cho tọa độ trạm.....");              
+            this.dialog.show();
+		}
+
+		@Override
+		protected void onPostExecute(SoapObject result) {
+			
+			if(getResponeCoordinate(result)!=null){
+				
+				Coordinate coordi[]=getResponeCoordinate(result);
+				for(int i=0;i<coordi.length;i++){
+					String address=coordi[i].ADDRESS;
+					String longitude=String.valueOf(coordi[i].LONGITUDE);
+					String direction=coordi[i].DIRECTION;
+					String numberbus=String.valueOf(coordi[i].NUMBER_BUS);
+					String latitude=String.valueOf(coordi[i].LATITUDE);
+					
+					myDb.insertRowOrdi(Integer.parseInt(numberbus), direction,Double.parseDouble(latitude),Double.parseDouble(longitude), address);
+				}
+				
+			}
+			
+			else{
+				 Toast.makeText(getApplicationContext(),"Result Found is ==  "+ result + "", Toast.LENGTH_LONG).show();
+			}
+			
+			super.onPostExecute(result);
+			
+			if (this.dialog.isShowing()) {
+
+                this.dialog.dismiss();
+			 }
+		}
+		
+		
+		
+	}
+	
 	public static Bus[] getRespone(SoapObject soap){
 		
 		Bus[] busRes=new Bus[soap.getPropertyCount()];
@@ -230,6 +315,28 @@ public class Menufunction extends Activity {
 		
 		return busRes;
 	}
+	
+	public static Coordinate[] getResponeCoordinate(SoapObject soap){
+		Coordinate []cooR=new Coordinate[soap.getPropertyCount()];
+		
+		for(int i=0;i<cooR.length;i++){
+			SoapObject coo=(SoapObject) soap.getProperty(i);
+			
+			Coordinate coordinate=new Coordinate();
+			
+			coordinate.ADDRESS=coo.getProperty(0).toString();
+			coordinate.LONGITUDE=Double.parseDouble(coo.getProperty(1).toString());
+			coordinate.DIRECTION=coo.getProperty(2).toString();
+			coordinate.NUMBER_BUS=Integer.parseInt(coo.getProperty(3).toString());
+			coordinate.LATITUDE=Double.parseDouble(coo.getProperty(4).toString());
+			
+			cooR[i]=coordinate;
+		}
+		
+		return cooR;
+	}
+	
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

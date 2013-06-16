@@ -98,12 +98,12 @@ public class BusDBAdapter {
 			+ KEY_ROWID + " integer primary key autoincrement, "
 			+ KEY_BUSNUMORDI + " integer not null, "
 			+ KEY_TYPE + " string not null, "
-			+ KEY_LAT + " string not null, "
-			+ KEY_LNG + " string not null, "
+			+ KEY_LAT + " double not null, "
+			+ KEY_LNG + " double not null, "
 			+ KEY_ADD + " string not null "
 			+ ");";
 	
-	public long insertRowOrdi(int MaTuyen,String Chieu,String ViDo, String KinhDo, String DiaChi) {
+	public long insertRowOrdi(int MaTuyen,String Chieu,Double ViDo, Double KinhDo, String DiaChi) {
 		
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(KEY_BUSNUMORDI,MaTuyen);
