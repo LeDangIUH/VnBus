@@ -6,7 +6,9 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import fitiuh.edu.vn.database.*;
 
 public class ShareFunction extends Activity {
@@ -25,7 +28,7 @@ public class ShareFunction extends Activity {
 	Intent intent;
 	Bundle bundle;
 	BusDBAdapter myDb;
-	
+	AlertDialog.Builder alertdialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class ShareFunction extends Activity {
 		map=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
 		
+		DialogWhatShare();
 		
 	}
 	
@@ -68,6 +72,34 @@ public class ShareFunction extends Activity {
 		ls.setAdapter(mycursoradapter);
 	}
 	
+	//show dialog what use have share infor your bus 
+	public void DialogWhatShare(){
+		alertdialog=new AlertDialog.Builder(ShareFunction.this);
+		alertdialog.setMessage("Bạn chỉ sử dụng chức năng này khi bạn chia sẽ thông tin tuyến xe bus của bạn."
+								+" Bạn có muốn chia sẻ thông tin tuyến của bạn ?");
+		alertdialog.setCancelable(true);
+		
+		alertdialog.setNegativeButton("Không",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		
+		alertdialog.setPositiveButton("Chấp nhận",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+				
+			}
+		});
+		
+		
+		AlertDialog alert=alertdialog.create();
+		alert.show();
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -94,6 +126,9 @@ public class ShareFunction extends Activity {
 			
 			dialog.show();
 		}
+		break;
+		case R.id.IconRefresh:
+			break;
 			
 		}
 		return super.onOptionsItemSelected(item);
