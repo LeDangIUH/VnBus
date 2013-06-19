@@ -148,15 +148,17 @@ containing a value of this type.
         public static final int navigation_refresh=0x7f020006;
     }
     public static final class id {
-        public static final int ISearchRouterList=0x7f040027;
-        public static final int IconAbout=0x7f040025;
-        public static final int IconFilter=0x7f040029;
-        public static final int IconRefresh=0x7f040028;
+        public static final int ISearchRouterList=0x7f04002b;
+        public static final int IconAbout=0x7f040029;
+        public static final int IconFilter=0x7f04002d;
+        public static final int IconRefresh=0x7f04002c;
         public static final int ImgSearchs=0x7f040012;
         public static final int ImgShare=0x7f04000e;
         public static final int Imgmaprouter=0x7f040009;
+        public static final int btnWhatShare=0x7f040027;
+        public static final int btnWhatShareCancle=0x7f040026;
         public static final int checkFilterChoose=0x7f040020;
-        public static final int chooseoutwardreturn=0x7f040026;
+        public static final int chooseoutwardreturn=0x7f04002a;
         public static final int hybrid=0x7f040004;
         public static final int imgBookmarks=0x7f04000f;
         public static final int imgClearInfor=0x7f040007;
@@ -171,6 +173,7 @@ containing a value of this type.
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
         public static final int satellite=0x7f040002;
+        public static final int spinnerWhatShare=0x7f040028;
         public static final int spinnerchoose=0x7f04001a;
         public static final int terrain=0x7f040003;
         public static final int txtBookmarks=0x7f040010;
@@ -181,6 +184,7 @@ containing a value of this type.
         public static final int txtSearchs=0x7f040014;
         public static final int txtSetup=0x7f040015;
         public static final int txtShare=0x7f04000d;
+        public static final int txtWhatShareDirec=0x7f040025;
         public static final int txtaddbookmark=0x7f04000b;
         public static final int txtclearinfor=0x7f040008;
         public static final int txtdirection=0x7f040019;
@@ -204,6 +208,7 @@ containing a value of this type.
         public static final int activity_sharefilteronerow=0x7f030009;
         public static final int activity_sharefunction=0x7f03000a;
         public static final int activity_splashstart=0x7f03000b;
+        public static final int activity_whatsharedialog=0x7f03000c;
     }
     public static final class menu {
         public static final int bookmarksfuntion=0x7f080000;

@@ -1,5 +1,9 @@
 package fitiuh.edu.vn.vnbus;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -15,8 +19,14 @@ import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import fitiuh.edu.vn.database.*;
@@ -72,6 +82,52 @@ public class ShareFunction extends Activity {
 		ls.setAdapter(mycursoradapter);
 	}
 	
+	//show Dialog share
+	public void DialogShareCoordinate(){
+		
+		final Dialog dialog=new Dialog(ShareFunction.this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.activity_whatsharedialog);
+		
+		Spinner spinner=(Spinner) dialog.findViewById(R.id.spinnerWhatShare);
+		showSpinner(spinner);
+		
+		Button accept=(Button) dialog.findViewById(R.id.btnWhatShare);
+		Button cancle=(Button) dialog.findViewById(R.id.btnWhatShareCancle);
+		accept.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		cancle.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
+		dialog.show();
+	}
+	
+	//add item to spinner from sqlite
+	public void showSpinner(Spinner spinner){
+		Cursor speciesCursor = myDb.getNumberBusAllRow();
+		startManagingCursor(speciesCursor);
+		
+		String[] from = new String[] {BusDBAdapter.KEY_BUSNUMBER };
+		int[] to = new int[] { android.R.id.text1 };
+		SimpleCursorAdapter speciesSpinnerAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, speciesCursor, from, to);
+		speciesSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(speciesSpinnerAdapter);
+	}
+	
 	//show dialog what use have share infor your bus 
 	public void DialogWhatShare(){
 		alertdialog=new AlertDialog.Builder(ShareFunction.this);
@@ -92,7 +148,7 @@ public class ShareFunction extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
-				
+				DialogShareCoordinate();
 			}
 		});
 		
@@ -100,6 +156,7 @@ public class ShareFunction extends Activity {
 		AlertDialog alert=alertdialog.create();
 		alert.show();
 	}
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

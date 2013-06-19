@@ -1,5 +1,9 @@
 package fitiuh.edu.vn.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -194,6 +198,8 @@ public class BusDBAdapter {
 		,KEY_BUSTIMETRIP,KEY_BUSINTERMITTER,KEY_BUSSTARTEND
 		,KEY_BUSMONEY,KEY_BUSADMINISTRATE,KEY_FORMBUS};
 	
+	public static final String[]NUMBUS_KEY=new String[]{KEY_BUSNUMBER};
+	
 	private static final String DATABASE_CREATE_SQL =
 		"create table " + DATABASE_TABLE + " ("
 		// + KEY_{...} + " {type} not null"
@@ -265,6 +271,18 @@ public class BusDBAdapter {
 		if (c != null) {
 			c.moveToFirst();
 		}
+		return c;
+	}
+	
+	//Return numbus bus  for spinner in dialog what want to share
+	public Cursor getNumberBusAllRow(){
+		String where = null;
+		Cursor c = 	db.query(true, DATABASE_TABLE, NUMBUS_KEY, 
+									where, null, null, null, null, null);
+		if (c != null) {
+			c.moveToFirst();
+		}
+		
 		return c;
 	}
 	

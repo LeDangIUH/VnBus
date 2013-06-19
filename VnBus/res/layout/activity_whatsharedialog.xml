@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/txtWhatShareDirec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:text="Mã tuyến: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnWhatShareCancle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnWhatShare"
+        android:layout_marginLeft="24dp"
+        android:layout_toRightOf="@+id/btnWhatShare"
+        android:text="Hủy bỏ" />
+
+    <Button
+        android:id="@+id/btnWhatShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtWhatShareDirec"
+        android:layout_marginTop="38dp"
+        android:layout_toRightOf="@+id/txtWhatShareDirec"
+        android:text="Chấp nhận" />
+
+    <Spinner
+        android:id="@+id/spinnerWhatShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnWhatShare"
+        android:layout_alignTop="@+id/txtWhatShareDirec"
+        android:layout_marginLeft="43dp" />
+
+</RelativeLayout>
