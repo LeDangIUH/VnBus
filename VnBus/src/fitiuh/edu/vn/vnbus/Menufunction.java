@@ -50,7 +50,7 @@ public class Menufunction extends Activity {
 		CheckDBBusInfor();
 		
 		IMG_SHARE.setOnClickListener(new OnClickListener() {
-			
+			 
 			@Override
 			public void onClick(View v) {
 				intent=new Intent(Menufunction.this,ShareFunction.class);
