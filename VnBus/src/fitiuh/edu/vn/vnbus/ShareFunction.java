@@ -98,7 +98,7 @@ public class ShareFunction extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				
+				Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG).show();
 			}
 		});
 		

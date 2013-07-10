@@ -1,5 +1,11 @@
 package fitiuh.edu.vn.vnbus;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -26,6 +32,9 @@ public class RouterListsFunction extends Activity {
 	ListView lv;
 	TextView txt;
 	Bundle bundle;
+	//map
+	private final LatLng LOCATION_SURRREY = new LatLng(10.820908200869496,106.68407135789789);
+	private GoogleMap map;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,8 @@ public class RouterListsFunction extends Activity {
 				final int numberbus=SelectForNum((int)arg3);
 				final String namebus=SelectForName((int)arg3);
 				
+				
+				//clear information of one bus when click in listview
 				dialogclearinfor.setOnClickListener(new OnClickListener() {
 					
 					@Override
@@ -70,15 +81,22 @@ public class RouterListsFunction extends Activity {
 					}
 				});
 				
+				//show marker in maps
 				dialogmaprouter.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
+						setContentView(R.layout.activity_sharefunction);
+						dialog.dismiss();
 						
+						map=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
+						map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
 						
+						showMarker("di", numberbus);
 					}
 				});
 				
+				//add bookmarks 
 				dialogbookmark.setOnClickListener(new OnClickListener() {
 					
 					@Override
@@ -94,6 +112,40 @@ public class RouterListsFunction extends Activity {
 			
 		});
 	}
+	
+	//show map
+	public void showMarker(String type,int num){
+		
+		Cursor c =myDb.getAllRowsOrdi(num,type);
+		
+		Double lat=null;
+		Double Long=null;
+		
+		
+		c.moveToFirst();
+		
+		for(int i=0;i<c.getCount();i++){
+			
+			lat=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LAT));
+			Long=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LNG));
+			
+			LatLng location =new LatLng(lat,Long);
+			drawMarker(location);
+			
+			c.moveToNext();
+		}
+	}
+
+	private void drawMarker(LatLng point){
+		// Creating an instance of MarkerOptions
+		MarkerOptions markerOptions = new MarkerOptions();					
+		
+		// Setting latitude and longitude for the marker
+		markerOptions.position(point);
+		
+		// Adding marker on the Google Map
+		map.addMarker(markerOptions);    		
+	}	
 	
 	
 	@Override
