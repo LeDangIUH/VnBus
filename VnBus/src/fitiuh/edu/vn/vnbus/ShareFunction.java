@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,7 +56,7 @@ public class ShareFunction extends Activity {
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
 		
 		DialogWhatShare();
-		
+		//showMarker("di");
 	}
 	
 	@Override
@@ -70,6 +72,45 @@ public class ShareFunction extends Activity {
 	private void closeDB() {
 		myDb.close();
 	}
+	
+	private void drawMarker(LatLng point){
+    	// Creating an instance of MarkerOptions
+    	MarkerOptions markerOptions = new MarkerOptions();					
+    		
+    	// Setting latitude and longitude for the marker
+    	markerOptions.position(point);
+    		
+    	// Adding marker on the Google Map
+    	map.addMarker(markerOptions);    		
+    }
+	
+	public void showMarker(String type){
+		
+		//String num=edt1.getText().toString();
+		
+		Cursor c =myDb.getAllRowsOrdi(1,type);
+		
+		double lat=0;
+		double Long=0;
+		String Add=null;
+		
+		c.moveToFirst();
+		
+		for(int i=0;i<c.getCount();i++){
+			
+			lat=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LAT));
+			Long=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LNG));
+			Add=c.getString(c.getColumnIndex(BusDBAdapter.KEY_ADD));
+			
+			LatLng location =new LatLng(Long, lat);
+			drawMarker(location);
+			
+			//Log.d(String.valueOf(lat), "kk");
+			
+			c.moveToNext();
+		}
+	}
+	
 	
 	public void ShowNumBusFilter(ListView ls){
 		
@@ -188,5 +229,6 @@ public class ShareFunction extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 	
 }

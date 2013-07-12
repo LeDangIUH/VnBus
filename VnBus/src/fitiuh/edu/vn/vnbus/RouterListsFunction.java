@@ -3,6 +3,7 @@ package fitiuh.edu.vn.vnbus;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -90,9 +91,14 @@ public class RouterListsFunction extends Activity {
 						dialog.dismiss();
 						
 						map=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
+						/*map.addMarker(new MarkerOptions().position(LOCATION_SURRREY)
+								.title("Find me here!")
+								.snippet("coi chung")
+								.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));*/
 						map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
 						
-						showMarker("di", numberbus);
+						showMarker(numberbus,"di");
+						
 					}
 				});
 				
@@ -113,40 +119,6 @@ public class RouterListsFunction extends Activity {
 		});
 	}
 	
-	//show map
-	public void showMarker(String type,int num){
-		
-		Cursor c =myDb.getAllRowsOrdi(num,type);
-		
-		Double lat=null;
-		Double Long=null;
-		
-		
-		c.moveToFirst();
-		
-		for(int i=0;i<c.getCount();i++){
-			
-			lat=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LAT));
-			Long=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LNG));
-			
-			LatLng location =new LatLng(lat,Long);
-			drawMarker(location);
-			
-			c.moveToNext();
-		}
-	}
-
-	private void drawMarker(LatLng point){
-		// Creating an instance of MarkerOptions
-		MarkerOptions markerOptions = new MarkerOptions();					
-		
-		// Setting latitude and longitude for the marker
-		markerOptions.position(point);
-		
-		// Adding marker on the Google Map
-		map.addMarker(markerOptions);    		
-	}	
-	
 	
 	@Override
 	protected void onDestroy() {
@@ -160,6 +132,44 @@ public class RouterListsFunction extends Activity {
 	}
 	private void closeDB() {
 		myDb.close();
+	}
+	
+	private void drawMarker(LatLng point){
+    	// Creating an instance of MarkerOptions
+    	MarkerOptions markerOptions = new MarkerOptions();					
+    		
+    	// Setting latitude and longitude for the marker
+    	markerOptions.position(point);
+    		
+    	// Adding marker on the Google Map
+    	map.addMarker(markerOptions);    		
+    }
+	
+	public void showMarker(int number,String type){
+		
+		//String num=edt1.getText().toString();
+		
+		Cursor c =myDb.getAllRowsOrdi(number,type);
+		
+		double lat=0;
+		double Long=0;
+		String Add=null;
+		
+		c.moveToFirst();
+		
+		for(int i=0;i<c.getCount();i++){
+			
+			lat=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LAT));
+			Long=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LNG));
+			Add=c.getString(c.getColumnIndex(BusDBAdapter.KEY_ADD));
+			
+			LatLng location =new LatLng(Long, lat);
+			drawMarker(location);
+			
+			//Log.d(String.valueOf(lat), "kk");
+			
+			c.moveToNext();
+		}
 	}
 	
 	//show listview
@@ -232,4 +242,5 @@ public class RouterListsFunction extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 }
