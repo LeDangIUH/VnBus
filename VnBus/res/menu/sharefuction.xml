@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/IconRefresh"
+    <!--<item android:id="@+id/IconRefresh"
         android:icon="@drawable/navigation_refresh"
         android:showAsAction="always" 
-        />
+        />  -->
     <item android:id="@+id/IconFilter"
         android:icon="@drawable/device_access_storage"
         android:showAsAction="always" 

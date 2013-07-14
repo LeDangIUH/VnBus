@@ -10,9 +10,13 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.app.ActionBar.Tab;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -45,18 +49,83 @@ public class ShareFunction extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_sharefunction);
+		//setContentView(R.layout.activity_sharefunction);
 		
 		openDB();
 		
 		getActionBar().setTitle("Hành Trình Bus");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		//getActionBar().setDisplayShowHomeEnabled(false);
 		
-		map=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
+		//map=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
+		//map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
 		
-		DialogWhatShare();
+		//DialogWhatShare();
 		//showMarker("di");
+		
+		//add tab in layout
+		ActionBar actionbar=getActionBar();
+		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		Tab tabGps=actionbar.newTab();
+		tabGps.setText("Chia Sẻ");
+		tabGps.setTabListener(new TabListener<ShareFunctionTabGPS>(this, "GPS",ShareFunctionTabGPS.class));
+		actionbar.addTab(tabGps);
+		
+		Tab tabSociety=actionbar.newTab();
+		tabSociety.setText("Lộ Trình");
+		//tabSociety.setIcon(R.drawable.social_share);
+		tabSociety.setTabListener(new TabListener<ShareFunctionTabSocialNetwork>(this, "Society",ShareFunctionTabSocialNetwork.class));
+		actionbar.addTab(tabSociety);
+		
+	}
+	
+	public static class TabListener<T extends Fragment>implements ActionBar.TabListener{
+
+		private final Activity myActivity;
+		private final String myTag;
+		private final Class<T> myClass;
+
+	public TabListener(Activity activity, String tag, Class<T> cls) {
+		myActivity = activity;
+		myTag = tag;
+		myClass = cls;
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+
+		Fragment myFragment = myActivity.getFragmentManager().findFragmentByTag(myTag);
+	
+		// Check if the fragment is already initialized
+		if (myFragment == null) {
+			// If not, instantiate and add it to the activity
+			myFragment = Fragment.instantiate(myActivity, myClass.getName());
+			ft.add(android.R.id.content, myFragment, myTag);
+		} else {
+			// If it exists, simply attach it in order to show it
+			ft.attach(myFragment);
+		}
+		
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+	
+		Fragment myFragment = myActivity.getFragmentManager().findFragmentByTag(myTag);
+	
+		if (myFragment != null) {
+			// Detach the fragment, because another one is being attached
+			ft.detach(myFragment);
+		}
+	
+	}
+
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		
+		}
+
 	}
 	
 	@Override
@@ -223,8 +292,8 @@ public class ShareFunction extends Activity {
 			dialog.show();
 		}
 		break;
-		case R.id.IconRefresh:
-			break;
+		//case R.id.IconRefresh:
+			//break;
 			
 		}
 		return super.onOptionsItemSelected(item);
