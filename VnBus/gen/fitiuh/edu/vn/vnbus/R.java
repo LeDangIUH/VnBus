@@ -9,6 +9,32 @@ package fitiuh.edu.vn.vnbus;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int allowSingleTap=0x7f010013;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int animateOnClick=0x7f010014;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bottomOffset=0x7f010011;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -49,6 +75,27 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int cameraZoom=0x7f010005;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int content=0x7f010010;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rightToLeft</code></td><td>0</td><td></td></tr>
+<tr><td><code>bottomToTop</code></td><td>1</td><td></td></tr>
+<tr><td><code>leftToRight</code></td><td>2</td><td></td></tr>
+<tr><td><code>topToBottom</code></td><td>3</td><td></td></tr>
+</table>
+         */
+        public static final int direction=0x7f01000e;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int handle=0x7f01000f;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -63,6 +110,16 @@ containing a value of this type.
 </table>
          */
         public static final int mapType=0x7f010000;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int topOffset=0x7f010012;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -146,58 +203,63 @@ containing a value of this type.
         public static final int device_access_storage=0x7f020004;
         public static final int ic_launcher=0x7f020005;
         public static final int navigation_refresh=0x7f020006;
-        public static final int so0=0x7f020007;
-        public static final int social_share=0x7f020008;
+        public static final int sliding_drawer_handle_bottom=0x7f020007;
+        public static final int so0=0x7f020008;
+        public static final int social_share=0x7f020009;
     }
     public static final class id {
-        public static final int ISearchRouterList=0x7f04002e;
-        public static final int IconAbout=0x7f04002c;
-        public static final int IconFilter=0x7f04002f;
-        public static final int ImgSearchs=0x7f040012;
-        public static final int ImgShare=0x7f04000e;
-        public static final int Imgmaprouter=0x7f040009;
-        public static final int SHSOIAL=0x7f040024;
-        public static final int btnWhatShare=0x7f04002a;
-        public static final int btnWhatShareCancle=0x7f040029;
-        public static final int checkFilterChoose=0x7f040020;
-        public static final int chooseoutwardreturn=0x7f04002d;
+        public static final int ISearchRouterList=0x7f040032;
+        public static final int IconAbout=0x7f040030;
+        public static final int IconFilter=0x7f040033;
+        public static final int ImgSearchs=0x7f040016;
+        public static final int ImgShare=0x7f040012;
+        public static final int Imgmaprouter=0x7f04000d;
+        public static final int bottomToTop=0x7f040006;
+        public static final int btnWhatShare=0x7f04002e;
+        public static final int btnWhatShareCancle=0x7f04002d;
+        public static final int checkFilterChoose=0x7f040024;
+        public static final int chooseoutwardreturn=0x7f040031;
         public static final int hybrid=0x7f040004;
-        public static final int imageView1=0x7f040023;
-        public static final int imgBookmarks=0x7f04000f;
-        public static final int imgClearInfor=0x7f040007;
-        public static final int imgRouterlist=0x7f040013;
-        public static final int imgSetup=0x7f040011;
-        public static final int imgaddfavou=0x7f04000c;
-        public static final int lsvFilter=0x7f04001e;
-        public static final int lvShowRouter=0x7f04001d;
-        public static final int lvshowbookmarks=0x7f040006;
-        public static final int map=0x7f040021;
-        public static final int mylayoutbookmark=0x7f040005;
+        public static final int imageView1=0x7f040027;
+        public static final int imgBookmarks=0x7f040013;
+        public static final int imgClearInfor=0x7f04000b;
+        public static final int imgRouterlist=0x7f040017;
+        public static final int imgSetup=0x7f040015;
+        public static final int imgaddfavou=0x7f040010;
+        public static final int leftToRight=0x7f040007;
+        public static final int locinfo=0x7f040028;
+        public static final int lsvFilter=0x7f040022;
+        public static final int lvShowRouter=0x7f040021;
+        public static final int lvshowbookmarks=0x7f04000a;
+        public static final int map=0x7f040025;
+        public static final int mylayoutbookmark=0x7f040009;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
+        public static final int rightToLeft=0x7f040005;
         public static final int satellite=0x7f040002;
-        public static final int shgps=0x7f040022;
-        public static final int spinnerWhatShare=0x7f04002b;
-        public static final int spinnerchoose=0x7f04001a;
+        public static final int shgps=0x7f040026;
+        public static final int spinnerWhatShare=0x7f04002f;
+        public static final int spinnerchoose=0x7f04001e;
         public static final int terrain=0x7f040003;
-        public static final int txtBookmarks=0x7f040010;
-        public static final int txtFilterNumBus=0x7f04001f;
-        public static final int txtNameOneRouter=0x7f040018;
-        public static final int txtNumOneRouter=0x7f040017;
-        public static final int txtRouterlist=0x7f040016;
-        public static final int txtSearchs=0x7f040014;
-        public static final int txtSetup=0x7f040015;
-        public static final int txtShare=0x7f04000d;
-        public static final int txtWhatShareDirec=0x7f040028;
-        public static final int txtaddbookmark=0x7f04000b;
-        public static final int txtclearinfor=0x7f040008;
-        public static final int txtdirection=0x7f040019;
-        public static final int txtloading=0x7f040025;
-        public static final int txtmaprouter=0x7f04000a;
-        public static final int txtoutwardreturn=0x7f04001b;
-        public static final int txtshowInforbus=0x7f04001c;
-        public static final int txtwelcome1=0x7f040026;
-        public static final int txtwelcometo2=0x7f040027;
+        public static final int topToBottom=0x7f040008;
+        public static final int txtBookmarks=0x7f040014;
+        public static final int txtFilterNumBus=0x7f040023;
+        public static final int txtNameOneRouter=0x7f04001c;
+        public static final int txtNumOneRouter=0x7f04001b;
+        public static final int txtRouterlist=0x7f04001a;
+        public static final int txtSearchs=0x7f040018;
+        public static final int txtSetup=0x7f040019;
+        public static final int txtShare=0x7f040011;
+        public static final int txtWhatShareDirec=0x7f04002c;
+        public static final int txtaddbookmark=0x7f04000f;
+        public static final int txtclearinfor=0x7f04000c;
+        public static final int txtdirection=0x7f04001d;
+        public static final int txtloading=0x7f040029;
+        public static final int txtmaprouter=0x7f04000e;
+        public static final int txtoutwardreturn=0x7f04001f;
+        public static final int txtshowInforbus=0x7f040020;
+        public static final int txtwelcome1=0x7f04002a;
+        public static final int txtwelcometo2=0x7f04002b;
     }
     public static final class layout {
         public static final int activity_bookmarksfunction=0x7f030000;
@@ -565,5 +627,130 @@ containing a value of this type.
           @attr name android:zOrderOnTop
         */
         public static final int MapAttrs_zOrderOnTop = 13;
+        /** Attributes that can be used with a MultiDirectionSlidingDrawer.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #MultiDirectionSlidingDrawer_allowSingleTap fitiuh.edu.vn.vnbus:allowSingleTap}</code></td><td></td></tr>
+           <tr><td><code>{@link #MultiDirectionSlidingDrawer_animateOnClick fitiuh.edu.vn.vnbus:animateOnClick}</code></td><td></td></tr>
+           <tr><td><code>{@link #MultiDirectionSlidingDrawer_bottomOffset fitiuh.edu.vn.vnbus:bottomOffset}</code></td><td></td></tr>
+           <tr><td><code>{@link #MultiDirectionSlidingDrawer_content fitiuh.edu.vn.vnbus:content}</code></td><td></td></tr>
+           <tr><td><code>{@link #MultiDirectionSlidingDrawer_direction fitiuh.edu.vn.vnbus:direction}</code></td><td></td></tr>
+           <tr><td><code>{@link #MultiDirectionSlidingDrawer_handle fitiuh.edu.vn.vnbus:handle}</code></td><td></td></tr>
+           <tr><td><code>{@link #MultiDirectionSlidingDrawer_topOffset fitiuh.edu.vn.vnbus:topOffset}</code></td><td></td></tr>
+           </table>
+           @see #MultiDirectionSlidingDrawer_allowSingleTap
+           @see #MultiDirectionSlidingDrawer_animateOnClick
+           @see #MultiDirectionSlidingDrawer_bottomOffset
+           @see #MultiDirectionSlidingDrawer_content
+           @see #MultiDirectionSlidingDrawer_direction
+           @see #MultiDirectionSlidingDrawer_handle
+           @see #MultiDirectionSlidingDrawer_topOffset
+         */
+        public static final int[] MultiDirectionSlidingDrawer = {
+            0x7f01000e, 0x7f01000f, 0x7f010010, 0x7f010011,
+            0x7f010012, 0x7f010013, 0x7f010014
+        };
+        /**
+          <p>This symbol is the offset where the {@link fitiuh.edu.vn.vnbus.R.attr#allowSingleTap}
+          attribute's value can be found in the {@link #MultiDirectionSlidingDrawer} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:allowSingleTap
+        */
+        public static final int MultiDirectionSlidingDrawer_allowSingleTap = 5;
+        /**
+          <p>This symbol is the offset where the {@link fitiuh.edu.vn.vnbus.R.attr#animateOnClick}
+          attribute's value can be found in the {@link #MultiDirectionSlidingDrawer} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:animateOnClick
+        */
+        public static final int MultiDirectionSlidingDrawer_animateOnClick = 6;
+        /**
+          <p>This symbol is the offset where the {@link fitiuh.edu.vn.vnbus.R.attr#bottomOffset}
+          attribute's value can be found in the {@link #MultiDirectionSlidingDrawer} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:bottomOffset
+        */
+        public static final int MultiDirectionSlidingDrawer_bottomOffset = 3;
+        /**
+          <p>This symbol is the offset where the {@link fitiuh.edu.vn.vnbus.R.attr#content}
+          attribute's value can be found in the {@link #MultiDirectionSlidingDrawer} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:content
+        */
+        public static final int MultiDirectionSlidingDrawer_content = 2;
+        /**
+          <p>This symbol is the offset where the {@link fitiuh.edu.vn.vnbus.R.attr#direction}
+          attribute's value can be found in the {@link #MultiDirectionSlidingDrawer} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>rightToLeft</code></td><td>0</td><td></td></tr>
+<tr><td><code>bottomToTop</code></td><td>1</td><td></td></tr>
+<tr><td><code>leftToRight</code></td><td>2</td><td></td></tr>
+<tr><td><code>topToBottom</code></td><td>3</td><td></td></tr>
+</table>
+          @attr name android:direction
+        */
+        public static final int MultiDirectionSlidingDrawer_direction = 0;
+        /**
+          <p>This symbol is the offset where the {@link fitiuh.edu.vn.vnbus.R.attr#handle}
+          attribute's value can be found in the {@link #MultiDirectionSlidingDrawer} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:handle
+        */
+        public static final int MultiDirectionSlidingDrawer_handle = 1;
+        /**
+          <p>This symbol is the offset where the {@link fitiuh.edu.vn.vnbus.R.attr#topOffset}
+          attribute's value can be found in the {@link #MultiDirectionSlidingDrawer} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:topOffset
+        */
+        public static final int MultiDirectionSlidingDrawer_topOffset = 4;
     };
 }
