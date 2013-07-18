@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+	<!--<Button
+		android:id="@+id/button_open"
+		android:layout_width="100dp"
+		android:layout_height="wrap_content"
+		android:text="open"
+		android:layout_centerInParent="true"
+		android:visibility="gone" />
+		
+	<fitiuh.edu.vn.vnbus.MultiDirectionSlidingDrawer
+		xmlns:my="http://schemas.android.com/apk/res/fitiuh.edu.vn.vnbus"
+		android:id="@+id/drawer"
+		my:direction="topToBottom"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		my:handle="@+id/handle"
+		my:content="@+id/content">
+		<include
+			android:id="@id/content"
+			layout="@layout/activity_societynetwork_pen_content" />
+		<ImageView
+			android:id="@id/handle"
+			android:layout_width="wrap_content"
+			android:layout_height="40px"
+			android:src="@drawable/sliding_drawer_handle_bottom" />
+	</fitiuh.edu.vn.vnbus.MultiDirectionSlidingDrawer>  -->
+
+	<!--<SlidingDrawer
+	    android:id="@+id/slidingDrawer"
+	    android:layout_width="match_parent"
+	    android:layout_height="100dp"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:content="@+id/content"
+	    android:gravity="center_horizontal"
+	    android:handle="@+id/handle"
+	    android:orientation="vertical"
+	    android:rotation="180" >
+
+	    <LinearLayout
+	        android:id="@+id/handle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+
+	        <ImageView
+	            android:id="@+id/imageView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:rotation="180"
+	            android:gravity="@+id/slidingDrawer"
+	            android:src="@drawable/sliding_drawer_handle_bottom" />
+	    </LinearLayout>
+
+	    <ImageView
+	        android:id="@+id/content"
+	        android:layout_width="30dp"
+	        android:layout_height="30dp"
+	        android:background="#FFFFFF"
+	        android:rotation="180"
+	        android:src="@drawable/ic_launcher" />
+	</SlidingDrawer>  -->	
+	<fragment
+	    android:id="@+id/map"
+	    android:name="com.google.android.gms.maps.MapFragment"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"/>
+	
+	<LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:background="#20535252" >
+
+        <TextView
+            android:id="@+id/locinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xin Chao Ban" />
+
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+        
+    </LinearLayout>
+	
+</RelativeLayout>
