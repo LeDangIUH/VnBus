@@ -208,26 +208,28 @@ containing a value of this type.
         public static final int social_share=0x7f020009;
     }
     public static final class id {
-        public static final int ISearchRouterList=0x7f040032;
-        public static final int IconAbout=0x7f040030;
-        public static final int IconFilter=0x7f040033;
+        public static final int ISearchRouterList=0x7f040036;
+        public static final int IconAbout=0x7f040034;
+        public static final int IconFilter=0x7f040037;
         public static final int ImgSearchs=0x7f040016;
         public static final int ImgShare=0x7f040012;
         public static final int Imgmaprouter=0x7f04000d;
         public static final int bottomToTop=0x7f040006;
-        public static final int btnWhatShare=0x7f04002e;
-        public static final int btnWhatShareCancle=0x7f04002d;
+        public static final int btnWhatShare=0x7f040032;
+        public static final int btnWhatShareCancle=0x7f040031;
+        public static final int callspeed=0x7f04002b;
+        public static final int calltime=0x7f04002c;
         public static final int checkFilterChoose=0x7f040024;
-        public static final int chooseoutwardreturn=0x7f040031;
+        public static final int chooseoutwardreturn=0x7f040035;
         public static final int hybrid=0x7f040004;
-        public static final int imageView1=0x7f040027;
         public static final int imgBookmarks=0x7f040013;
         public static final int imgClearInfor=0x7f04000b;
         public static final int imgRouterlist=0x7f040017;
         public static final int imgSetup=0x7f040015;
         public static final int imgaddfavou=0x7f040010;
+        public static final int imgnumbussociety=0x7f040027;
         public static final int leftToRight=0x7f040007;
-        public static final int locinfo=0x7f040028;
+        public static final int lssocialnetwork=0x7f040028;
         public static final int lsvFilter=0x7f040022;
         public static final int lvShowRouter=0x7f040021;
         public static final int lvshowbookmarks=0x7f04000a;
@@ -238,9 +240,11 @@ containing a value of this type.
         public static final int rightToLeft=0x7f040005;
         public static final int satellite=0x7f040002;
         public static final int shgps=0x7f040026;
-        public static final int spinnerWhatShare=0x7f04002f;
+        public static final int speedsociety=0x7f040029;
+        public static final int spinnerWhatShare=0x7f040033;
         public static final int spinnerchoose=0x7f04001e;
         public static final int terrain=0x7f040003;
+        public static final int timesociety=0x7f04002a;
         public static final int topToBottom=0x7f040008;
         public static final int txtBookmarks=0x7f040014;
         public static final int txtFilterNumBus=0x7f040023;
@@ -250,16 +254,16 @@ containing a value of this type.
         public static final int txtSearchs=0x7f040018;
         public static final int txtSetup=0x7f040019;
         public static final int txtShare=0x7f040011;
-        public static final int txtWhatShareDirec=0x7f04002c;
+        public static final int txtWhatShareDirec=0x7f040030;
         public static final int txtaddbookmark=0x7f04000f;
         public static final int txtclearinfor=0x7f04000c;
         public static final int txtdirection=0x7f04001d;
-        public static final int txtloading=0x7f040029;
+        public static final int txtloading=0x7f04002d;
         public static final int txtmaprouter=0x7f04000e;
         public static final int txtoutwardreturn=0x7f04001f;
         public static final int txtshowInforbus=0x7f040020;
-        public static final int txtwelcome1=0x7f04002a;
-        public static final int txtwelcometo2=0x7f04002b;
+        public static final int txtwelcome1=0x7f04002e;
+        public static final int txtwelcometo2=0x7f04002f;
     }
     public static final class layout {
         public static final int activity_bookmarksfunction=0x7f030000;
@@ -275,8 +279,9 @@ containing a value of this type.
         public static final int activity_sharefunction=0x7f03000a;
         public static final int activity_sharefunctiongps=0x7f03000b;
         public static final int activity_sharefunctionsocietynetwork=0x7f03000c;
-        public static final int activity_splashstart=0x7f03000d;
-        public static final int activity_whatsharedialog=0x7f03000e;
+        public static final int activity_sociatynetworkitem=0x7f03000d;
+        public static final int activity_splashstart=0x7f03000e;
+        public static final int activity_whatsharedialog=0x7f03000f;
     }
     public static final class menu {
         public static final int bookmarksfuntion=0x7f080000;

@@ -77,16 +77,12 @@
         android:orientation="vertical"
         android:background="#20535252" >
 
-        <TextView
-            android:id="@+id/locinfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Xin Chao Ban" />
-
-        <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
+		<fitiuh.edu.vn.vnbus.ShareHorizontaListView
+		    android:id="@+id/lssocialnetwork"
+		    android:layout_width="375dp"
+		    android:layout_height="96dp" 
+		    android:layout_marginLeft="4dp">
+		</fitiuh.edu.vn.vnbus.ShareHorizontaListView>
         
     </LinearLayout>
 	
