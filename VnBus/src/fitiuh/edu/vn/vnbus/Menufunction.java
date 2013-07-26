@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.text.style.BulletSpan;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +23,7 @@ public class Menufunction extends Activity {
 	ImageButton IMG_SHARE,IMG_BOOKMARKS,IMG_ROUTERLIST,IMG_SEARCHS,IMG_SETUP;
 	Intent intent;
 	BusDBAdapter myDb;
+	Bundle bundle;
 	
 	/**
 	 * Get data from services
@@ -32,7 +34,7 @@ public class Menufunction extends Activity {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.105:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.107:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 
 	@Override
@@ -91,8 +93,10 @@ public class Menufunction extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				
+				//String id=callIdChooseDismiss();
+				
+				Toast.makeText(getApplicationContext(),String.valueOf(callIdChooseDismiss()), Toast.LENGTH_LONG).show();
 			}
 		});
 	}
@@ -343,6 +347,15 @@ public class Menufunction extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menufunction, menu);
 		return true;
+	}
+	
+	public int callIdChooseDismiss() {
+		
+		intent=new Intent();
+		intent=getIntent();
+		bundle=intent.getBundleExtra("idChooseNo");
+		
+		return bundle.getInt("dismiss");
 	}
 	
 	

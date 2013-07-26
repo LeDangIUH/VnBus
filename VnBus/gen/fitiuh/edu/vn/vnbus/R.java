@@ -210,19 +210,21 @@ containing a value of this type.
         public static final int wattingscream=0x7f02000b;
     }
     public static final class id {
-        public static final int ISearchRouterList=0x7f040033;
-        public static final int IconAbout=0x7f040031;
-        public static final int IconFilter=0x7f040034;
+        public static final int ISearchRouterList=0x7f040038;
+        public static final int IconAbout=0x7f040036;
+        public static final int IconFilter=0x7f040039;
         public static final int ImgSearchs=0x7f040016;
         public static final int ImgShare=0x7f040012;
         public static final int Imgmaprouter=0x7f04000d;
         public static final int bottomToTop=0x7f040006;
-        public static final int btnWhatShare=0x7f04002f;
-        public static final int btnWhatShareCancle=0x7f04002e;
+        public static final int btnNoAcceptticket=0x7f04002e;
+        public static final int btnWhatShare=0x7f040034;
+        public static final int btnWhatShareCancle=0x7f040033;
+        public static final int btnacceptticket=0x7f04002d;
         public static final int callspeed=0x7f040029;
         public static final int calltime=0x7f04002b;
         public static final int checkFilterChoose=0x7f040024;
-        public static final int chooseoutwardreturn=0x7f040032;
+        public static final int chooseoutwardreturn=0x7f040037;
         public static final int hybrid=0x7f040004;
         public static final int imgBookmarks=0x7f040013;
         public static final int imgClearInfor=0x7f04000b;
@@ -241,9 +243,12 @@ containing a value of this type.
         public static final int normal=0x7f040001;
         public static final int rightToLeft=0x7f040005;
         public static final int satellite=0x7f040002;
+        public static final int scan_button=0x7f04002f;
+        public static final int scan_content=0x7f040031;
+        public static final int scan_format=0x7f040030;
         public static final int shgps=0x7f040026;
         public static final int speedsociety=0x7f04002a;
-        public static final int spinnerWhatShare=0x7f040030;
+        public static final int spinnerWhatShare=0x7f040035;
         public static final int spinnerchoose=0x7f04001e;
         public static final int terrain=0x7f040003;
         public static final int timesociety=0x7f04002c;
@@ -256,7 +261,7 @@ containing a value of this type.
         public static final int txtSearchs=0x7f040018;
         public static final int txtSetup=0x7f040019;
         public static final int txtShare=0x7f040011;
-        public static final int txtWhatShareDirec=0x7f04002d;
+        public static final int txtWhatShareDirec=0x7f040032;
         public static final int txtaddbookmark=0x7f04000f;
         public static final int txtclearinfor=0x7f04000c;
         public static final int txtdirection=0x7f04001d;
@@ -280,7 +285,8 @@ containing a value of this type.
         public static final int activity_sharefunctionsocietynetwork=0x7f03000c;
         public static final int activity_sociatynetworkitem=0x7f03000d;
         public static final int activity_splashstart=0x7f03000e;
-        public static final int activity_whatsharedialog=0x7f03000f;
+        public static final int activity_ticket=0x7f03000f;
+        public static final int activity_whatsharedialog=0x7f030010;
     }
     public static final class menu {
         public static final int bookmarksfuntion=0x7f080000;
@@ -440,7 +446,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraBearing
+          @attr name fitiuh.edu.vn.vnbus:cameraBearing
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
@@ -454,7 +460,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLat
+          @attr name fitiuh.edu.vn.vnbus:cameraTargetLat
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
@@ -468,7 +474,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLng
+          @attr name fitiuh.edu.vn.vnbus:cameraTargetLng
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
@@ -482,7 +488,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTilt
+          @attr name fitiuh.edu.vn.vnbus:cameraTilt
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
@@ -496,7 +502,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraZoom
+          @attr name fitiuh.edu.vn.vnbus:cameraZoom
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
@@ -516,7 +522,7 @@ containing a value of this type.
 <tr><td><code>terrain</code></td><td>3</td><td></td></tr>
 <tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name android:mapType
+          @attr name fitiuh.edu.vn.vnbus:mapType
         */
         public static final int MapAttrs_mapType = 0;
         /**
@@ -530,7 +536,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiCompass
+          @attr name fitiuh.edu.vn.vnbus:uiCompass
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
@@ -544,7 +550,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiRotateGestures
+          @attr name fitiuh.edu.vn.vnbus:uiRotateGestures
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
@@ -558,7 +564,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiScrollGestures
+          @attr name fitiuh.edu.vn.vnbus:uiScrollGestures
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
@@ -572,7 +578,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiTiltGestures
+          @attr name fitiuh.edu.vn.vnbus:uiTiltGestures
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
@@ -586,7 +592,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomControls
+          @attr name fitiuh.edu.vn.vnbus:uiZoomControls
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
@@ -600,7 +606,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomGestures
+          @attr name fitiuh.edu.vn.vnbus:uiZoomGestures
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
@@ -614,7 +620,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:useViewLifecycle
+          @attr name fitiuh.edu.vn.vnbus:useViewLifecycle
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
@@ -628,7 +634,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:zOrderOnTop
+          @attr name fitiuh.edu.vn.vnbus:zOrderOnTop
         */
         public static final int MapAttrs_zOrderOnTop = 13;
         /** Attributes that can be used with a MultiDirectionSlidingDrawer.
@@ -668,7 +674,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:allowSingleTap
+          @attr name fitiuh.edu.vn.vnbus:allowSingleTap
         */
         public static final int MultiDirectionSlidingDrawer_allowSingleTap = 5;
         /**
@@ -682,7 +688,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:animateOnClick
+          @attr name fitiuh.edu.vn.vnbus:animateOnClick
         */
         public static final int MultiDirectionSlidingDrawer_animateOnClick = 6;
         /**
@@ -698,7 +704,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:bottomOffset
+          @attr name fitiuh.edu.vn.vnbus:bottomOffset
         */
         public static final int MultiDirectionSlidingDrawer_bottomOffset = 3;
         /**
@@ -708,7 +714,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:content
+          @attr name fitiuh.edu.vn.vnbus:content
         */
         public static final int MultiDirectionSlidingDrawer_content = 2;
         /**
@@ -727,7 +733,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>leftToRight</code></td><td>2</td><td></td></tr>
 <tr><td><code>topToBottom</code></td><td>3</td><td></td></tr>
 </table>
-          @attr name android:direction
+          @attr name fitiuh.edu.vn.vnbus:direction
         */
         public static final int MultiDirectionSlidingDrawer_direction = 0;
         /**
@@ -737,7 +743,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:handle
+          @attr name fitiuh.edu.vn.vnbus:handle
         */
         public static final int MultiDirectionSlidingDrawer_handle = 1;
         /**
@@ -753,7 +759,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:topOffset
+          @attr name fitiuh.edu.vn.vnbus:topOffset
         */
         public static final int MultiDirectionSlidingDrawer_topOffset = 4;
     };

@@ -62,6 +62,7 @@
         <activity android:name="fitiuh.edu.vn.vnbus.RouterListsFunction"></activity>
         <activity android:name="fitiuh.edu.vn.vnbus.SearchsFunction"></activity>
         <activity android:name="fitiuh.edu.vn.vnbus.RouterClearInfor"></activity>
+        <activity android:name="fitiuh.edu.vn.vnbus.TicketAction"></activity>
         
     </application>
 
