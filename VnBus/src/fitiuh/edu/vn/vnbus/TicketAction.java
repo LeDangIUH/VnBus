@@ -87,7 +87,7 @@ public class TicketAction extends Activity implements OnClickListener{
 	                // can't get location
 	                // GPS or Network is not enabled
 	                // Ask user to enable GPS/network in settings
-	                gpsTracker.showSettingsAlert();
+	                gpsTracker.showSettingsAlert();//I don't work
 	            }
 	            
 				
