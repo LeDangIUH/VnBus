@@ -1,5 +1,6 @@
 package fitiuh.edu.vn.vnbus;
 
+import fitiuh.edu.vn.gps.*;
 import fitiuh.edu.vn.barcode.*;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,12 +16,12 @@ import android.widget.Toast;
 
 public class TicketAction extends Activity implements OnClickListener{
 	
-	Button accept,dismiss,scan;
+	Button accept,dismiss,scan,gps;
 	int idchoose;//for identity for show or not show share location for share function
 	Intent intent;
 	Bundle buldle;
-	TextView formatTxt,contentTxt;
-	
+	TextView formatTxt,contentTxt,gpsshow;
+	GPSTracker gpsTracker;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,36 @@ public class TicketAction extends Activity implements OnClickListener{
 		contentTxt=(TextView) findViewById(R.id.scan_content);
 		scan=(Button) findViewById(R.id.scan_button);
 		scan.setOnClickListener(this);
+		
+		
+		gpsshow=(TextView) findViewById(R.id.txtshowgps);
+		gps=(Button) findViewById(R.id.gps_Button);
+		gps.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				gpsTracker=new GPSTracker(getApplicationContext());
+				
+				  // check if GPS enabled    
+	            if(gpsTracker.canGetLocation()){
+	                 
+	                double latitude = gpsTracker.getLatitude();
+	                double longitude = gpsTracker.getLongitude();
+	                 
+	                // \n is for new line
+	                //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();   
+	                gpsshow.setText(String.valueOf(latitude)+"\n"+String.valueOf(longitude));
+	                
+	            }else{
+	                // can't get location
+	                // GPS or Network is not enabled
+	                // Ask user to enable GPS/network in settings
+	                gpsTracker.showSettingsAlert();
+	            }
+	            
+				
+			}
+		});
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
