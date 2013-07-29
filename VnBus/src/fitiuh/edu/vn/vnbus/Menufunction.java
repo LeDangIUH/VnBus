@@ -34,7 +34,7 @@ public class Menufunction extends Activity {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.107:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.101:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 
 	@Override

@@ -3,8 +3,10 @@ package fitiuh.edu.vn.vnbus;
 import fitiuh.edu.vn.gps.*;
 import fitiuh.edu.vn.barcode.*;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,11 +18,11 @@ import android.widget.Toast;
 
 public class TicketAction extends Activity implements OnClickListener{
 	
-	Button accept,dismiss,scan,gps;
+	Button accept,dismiss,scan,gps,phone;
 	int idchoose;//for identity for show or not show share location for share function
 	Intent intent;
 	Bundle buldle;
-	TextView formatTxt,contentTxt,gpsshow;
+	TextView formatTxt,contentTxt,gpsshow,phoneshow;
 	GPSTracker gpsTracker;
 	
 	@Override
@@ -71,7 +73,7 @@ public class TicketAction extends Activity implements OnClickListener{
 			
 			@Override
 			public void onClick(View v) {
-				gpsTracker=new GPSTracker(getApplicationContext());
+				gpsTracker=new GPSTracker(TicketAction.this);
 				
 				  // check if GPS enabled    
 	            if(gpsTracker.canGetLocation()){
@@ -90,7 +92,17 @@ public class TicketAction extends Activity implements OnClickListener{
 	                gpsTracker.showSettingsAlert();//I don't work
 	            }
 	            
-				
+			}
+		});
+		
+		phoneshow=(TextView) findViewById(R.id.show_phonetxt);
+		phone=(Button) findViewById(R.id.phone_btn);
+		phone.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				TelephonyManager manger=(TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+				phoneshow.setText(manger.getLine1Number());
 			}
 		});
 	}

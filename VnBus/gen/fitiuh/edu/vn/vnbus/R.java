@@ -210,21 +210,21 @@ containing a value of this type.
         public static final int wattingscream=0x7f02000b;
     }
     public static final class id {
-        public static final int ISearchRouterList=0x7f04003a;
-        public static final int IconAbout=0x7f040038;
-        public static final int IconFilter=0x7f04003b;
+        public static final int ISearchRouterList=0x7f04003c;
+        public static final int IconAbout=0x7f04003a;
+        public static final int IconFilter=0x7f04003d;
         public static final int ImgSearchs=0x7f040016;
         public static final int ImgShare=0x7f040012;
         public static final int Imgmaprouter=0x7f04000d;
         public static final int bottomToTop=0x7f040006;
         public static final int btnNoAcceptticket=0x7f04002e;
-        public static final int btnWhatShare=0x7f040036;
-        public static final int btnWhatShareCancle=0x7f040035;
+        public static final int btnWhatShare=0x7f040038;
+        public static final int btnWhatShareCancle=0x7f040037;
         public static final int btnacceptticket=0x7f04002d;
         public static final int callspeed=0x7f040029;
         public static final int calltime=0x7f04002b;
         public static final int checkFilterChoose=0x7f040024;
-        public static final int chooseoutwardreturn=0x7f040039;
+        public static final int chooseoutwardreturn=0x7f04003b;
         public static final int gps_Button=0x7f040032;
         public static final int hybrid=0x7f040004;
         public static final int imgBookmarks=0x7f040013;
@@ -242,14 +242,16 @@ containing a value of this type.
         public static final int mylayoutbookmark=0x7f040009;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
+        public static final int phone_btn=0x7f040034;
         public static final int rightToLeft=0x7f040005;
         public static final int satellite=0x7f040002;
         public static final int scan_button=0x7f04002f;
         public static final int scan_content=0x7f040031;
         public static final int scan_format=0x7f040030;
         public static final int shgps=0x7f040026;
+        public static final int show_phonetxt=0x7f040035;
         public static final int speedsociety=0x7f04002a;
-        public static final int spinnerWhatShare=0x7f040037;
+        public static final int spinnerWhatShare=0x7f040039;
         public static final int spinnerchoose=0x7f04001e;
         public static final int terrain=0x7f040003;
         public static final int timesociety=0x7f04002c;
@@ -262,7 +264,7 @@ containing a value of this type.
         public static final int txtSearchs=0x7f040018;
         public static final int txtSetup=0x7f040019;
         public static final int txtShare=0x7f040011;
-        public static final int txtWhatShareDirec=0x7f040034;
+        public static final int txtWhatShareDirec=0x7f040036;
         public static final int txtaddbookmark=0x7f04000f;
         public static final int txtclearinfor=0x7f04000c;
         public static final int txtdirection=0x7f04001d;

@@ -68,4 +68,23 @@
         android:layout_toRightOf="@+id/gps_Button"
         android:text="TextView" />
 
+    <Button
+        android:id="@+id/phone_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/gps_Button"
+        android:layout_below="@+id/txtshowgps"
+        android:layout_marginTop="29dp"
+        android:text="Phone" />
+
+    <TextView
+        android:id="@+id/show_phonetxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtshowgps"
+        android:layout_below="@+id/phone_btn"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="29dp"
+        android:text="TextView" />
+
 </RelativeLayout>
