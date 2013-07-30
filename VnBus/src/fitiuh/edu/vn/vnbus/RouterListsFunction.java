@@ -62,7 +62,7 @@ public class RouterListsFunction extends Activity {
 				
 				ImageButton dialogclearinfor=(ImageButton) dialog.findViewById(R.id.imgClearInfor);
 				ImageButton dialogmaprouter=(ImageButton) dialog.findViewById(R.id.Imgmaprouter);
-				ImageButton dialogbookmark=(ImageButton) dialog.findViewById(R.id.imgaddfavou);
+				ImageButton dialogbookmark=(ImageButton) dialog.findViewById(R.id.imgTicket);
 				
 				final int numberbus=SelectForNum((int)arg3);
 				final String namebus=SelectForName((int)arg3);
@@ -185,7 +185,7 @@ public class RouterListsFunction extends Activity {
 		String[] fromFieldNames = new String[]
 				{BusDBAdapter.KEY_BUSNUMBER,  BusDBAdapter.KEY_BUSNAME};
 		int[] toViewIDs = new int[]
-				{R.id.txtNumOneRouter,          R.id.txtNameOneRouter};
+				{R.id.txtTicket,          R.id.txtNameOneRouter};
 			
 		// Create adapter to may columns of the DB onto elemesnt in the UI.
 		SimpleCursorAdapter myCursorAdapter = 

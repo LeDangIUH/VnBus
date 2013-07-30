@@ -71,7 +71,7 @@ public class BookMarksFunction extends Activity {
 		String[] fromFieldNames = new String[]
 					{BusDBAdapter.KEY_BUSNUMFavour,  BusDBAdapter.KEY_BUSNAMEFavour};
 		int[] toViewIDs = new int[]
-					{R.id.txtNumOneRouter,          R.id.txtNameOneRouter};
+					{R.id.txtTicket,          R.id.txtNameOneRouter};
 			
 		// Create adapter to may columns of the DB onto elemesnt in the UI.
 		SimpleCursorAdapter myCursorAdapter = 

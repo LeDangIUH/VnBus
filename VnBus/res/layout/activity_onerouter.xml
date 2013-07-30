@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/txtNumOneRouter"
+        android:id="@+id/txtTicket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -17,8 +17,8 @@
         android:id="@+id/txtNameOneRouter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtNumOneRouter"
-        android:layout_below="@+id/txtNumOneRouter"
+        android:layout_alignLeft="@+id/txtTicket"
+        android:layout_below="@+id/txtTicket"
         android:layout_marginLeft="63dp"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />

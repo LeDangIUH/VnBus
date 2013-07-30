@@ -204,10 +204,21 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020005;
         public static final int mainlogo=0x7f020006;
         public static final int navigation_refresh=0x7f020007;
-        public static final int sliding_drawer_handle_bottom=0x7f020008;
-        public static final int so0=0x7f020009;
-        public static final int social_share=0x7f02000a;
-        public static final int wattingscream=0x7f02000b;
+        public static final int numbers_1_icon=0x7f020008;
+        public static final int numbers_2_icon=0x7f020009;
+        public static final int numbers_3_icon=0x7f02000a;
+        public static final int numbers_4_icon=0x7f02000b;
+        public static final int numbers_5_icon=0x7f02000c;
+        public static final int numbers_6_icon=0x7f02000d;
+        public static final int numbers_7_icon=0x7f02000e;
+        public static final int numbers_8_icon=0x7f02000f;
+        public static final int numbers_9_icon=0x7f020010;
+        public static final int sliding_drawer_handle_bottom=0x7f020011;
+        public static final int so0=0x7f020012;
+        public static final int social_share=0x7f020013;
+        public static final int valid=0x7f020014;
+        public static final int warn=0x7f020015;
+        public static final int wattingscream=0x7f020016;
     }
     public static final class id {
         public static final int ISearchRouterList=0x7f04003c;
@@ -231,7 +242,7 @@ containing a value of this type.
         public static final int imgClearInfor=0x7f04000b;
         public static final int imgRouterlist=0x7f040017;
         public static final int imgSetup=0x7f040015;
-        public static final int imgaddfavou=0x7f040010;
+        public static final int imgTicket=0x7f040010;
         public static final int imgnumbussociety=0x7f040027;
         public static final int leftToRight=0x7f040007;
         public static final int lssocialnetwork=0x7f040028;
@@ -259,11 +270,11 @@ containing a value of this type.
         public static final int txtBookmarks=0x7f040014;
         public static final int txtFilterNumBus=0x7f040023;
         public static final int txtNameOneRouter=0x7f04001c;
-        public static final int txtNumOneRouter=0x7f04001b;
         public static final int txtRouterlist=0x7f04001a;
         public static final int txtSearchs=0x7f040018;
         public static final int txtSetup=0x7f040019;
         public static final int txtShare=0x7f040011;
+        public static final int txtTicket=0x7f04001b;
         public static final int txtWhatShareDirec=0x7f040036;
         public static final int txtaddbookmark=0x7f04000f;
         public static final int txtclearinfor=0x7f04000c;

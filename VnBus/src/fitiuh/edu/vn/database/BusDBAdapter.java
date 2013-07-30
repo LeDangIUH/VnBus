@@ -41,6 +41,74 @@ public class BusDBAdapter {
 		myDBHelper.close();
 	}
 	
+	
+	
+	//create table search barcode for pay ticket
+	public static final String DATABASE_TABLE1="ListBarCode";
+	
+	public static final String KEY_ROWIDnumbus = "_id";
+	public static final int COL_ROWIDnumbus = 0;
+	
+	public static final String KEY_BARCODEid="MaBarcode";
+	public static final String KEY_Rimage="MaHinhAnh";
+	
+	public static final int COL_BARCODEid = 1;
+	public static final int COL_Rimage = 2;
+	
+	public static final String[] ALL_KEYSTicket = new String[] {KEY_ROWIDnumbus,KEY_BARCODEid,KEY_Rimage};
+	
+	private static final String DATABASE_CREATE_SQLTicket =
+			"create table " + DATABASE_TABLE1 + " ("
+			+ KEY_ROWIDnumbus + " integer primary key autoincrement, "
+			+ KEY_BARCODEid + " string not null, "
+			+ KEY_Rimage + " string not null "
+			+ ");";
+	
+
+	// Add a new set of values to the database.
+	public long insertListBarcode(int _id, String MaBarcode,String MaHinhAnh) {
+						
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(KEY_ROWIDnumbus,_id);
+		initialValues.put(KEY_BARCODEid, MaBarcode);
+		initialValues.put(KEY_Rimage, MaHinhAnh);
+		// Insert it into the database.
+		return db.insert(DATABASE_TABLE1, null, initialValues);
+	}
+	
+	public Cursor getAllBar() {
+		
+		String where = null;
+		return db.query(true, DATABASE_TABLE1, ALL_KEYSTicket, 
+								where, null, null, null, null, null);
+			//if (c != null) {
+				//c.moveToFirst();
+			//}
+			//return c;
+	}
+
+	
+	// Get a specific row (by rowId)
+	public Cursor getRowTicket_NumberBus(int rowId) {
+		String where = KEY_ROWIDnumbus + "=" + rowId;
+		Cursor c = 	db.query(true, DATABASE_TABLE1, ALL_KEYSTicket, where, null, null, null, null, null);
+		if (c != null) {
+			c.moveToFirst();
+		}
+		return c;
+	}
+		
+	// Get a specific row (by rowId)
+	public Cursor getRowTicket_Barcode(String rowId) {
+		String where = KEY_BARCODEid+" LIKE "+"'"+rowId+"'";
+		Cursor c = 	db.query(true, DATABASE_TABLE1, ALL_KEYSTicket, where, null, null, null, null, null);
+		if (c != null) {
+			c.moveToFirst();
+		}
+		return c;
+	}
+
+
 	//create table favourite 
 	public static final String DATABASE_TABLE2="FavouriteBus";
 		
@@ -334,6 +402,7 @@ public class BusDBAdapter {
 			_db.execSQL(DATABASE_CREATE_SQL);
 			_db.execSQL(DATABASE_CREATE_SQLFavour);
 			_db.execSQL(DATABASE_CREATE_SQLOrdi);
+			_db.execSQL(DATABASE_CREATE_SQLTicket);
 		}
 
 		@Override
@@ -343,6 +412,7 @@ public class BusDBAdapter {
 			
 			// Destroy old database:
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE1);
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE2);
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE3);
 			

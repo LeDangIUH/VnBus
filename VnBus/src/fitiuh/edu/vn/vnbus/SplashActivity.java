@@ -38,7 +38,7 @@ public class SplashActivity extends Activity {
 				Log.e(TAG, e.getMessage());
 			}
 			
-			Intent intent=new Intent(SplashActivity.this,TicketAction.class);
+			Intent intent=new Intent(SplashActivity.this,Menufunction.class);
 			SplashActivity.this.startActivity(intent);
 			SplashActivity.this.finish();
 		}

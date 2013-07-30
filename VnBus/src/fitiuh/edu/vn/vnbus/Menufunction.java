@@ -20,7 +20,7 @@ import fitiuh.edu.vn.database.*;
 
 public class Menufunction extends Activity {
 	
-	ImageButton IMG_SHARE,IMG_BOOKMARKS,IMG_ROUTERLIST,IMG_SEARCHS,IMG_SETUP;
+	ImageButton IMG_SHARE,IMG_BOOKMARKS,IMG_ROUTERLIST,IMG_SEARCHS,IMG_SETUP,IMG_TICKET;
 	Intent intent;
 	BusDBAdapter myDb;
 	Bundle bundle;
@@ -47,6 +47,7 @@ public class Menufunction extends Activity {
 		IMG_ROUTERLIST=(ImageButton) findViewById(R.id.imgRouterlist);
 		IMG_SEARCHS=(ImageButton) findViewById(R.id.ImgSearchs);
 		IMG_SETUP=(ImageButton) findViewById(R.id.imgSetup);
+		IMG_TICKET=(ImageButton) findViewById(R.id.imgTicket);
 		
 		openDB();
 		CheckDBBusInfor();
@@ -99,6 +100,15 @@ public class Menufunction extends Activity {
 				Toast.makeText(getApplicationContext(),String.valueOf(callIdChooseDismiss()), Toast.LENGTH_LONG).show();
 			}
 		});
+		
+		IMG_TICKET.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	
 	@Override
@@ -126,6 +136,11 @@ public class Menufunction extends Activity {
 		if(myDb.getAllOrdi().getCount()==0){
 			new backMethodCoordinate().execute();
 		}
+		
+		if(myDb.getAllBar().getCount()==0){
+			new backMethodBarcodeList().execute();
+		}
+		
 	}
 	
 	//Start connect web service and pasing data to sqlite
@@ -291,6 +306,80 @@ public class Menufunction extends Activity {
 		
 	}
 	
+	//Connect barcodelist  data in webservice and pasing sqlite data in mobile
+		public class backMethodBarcodeList extends AsyncTask<SoapObject, SoapObject, SoapObject > {
+
+			private final ProgressDialog dialog=new ProgressDialog(Menufunction.this);
+			
+			@Override
+			protected SoapObject doInBackground(SoapObject... params) {
+
+				METHOD_NAME="CallListBarcode";
+				SOAP_ACTION="http://test_bus/CallListBarcode";
+				
+				SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+	            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+	            envelope.setOutputSoapObject(request);
+	            envelope.addMapping(NAMESPACE,"BarcodeList",new BarcodeList().getClass());
+	            
+	            try {
+
+	                 AndroidHttpTransport androidHttpTransport = new AndroidHttpTransport(URL);
+	                 
+	                 androidHttpTransport.debug=true;
+
+	                 androidHttpTransport.call(SOAP_ACTION, envelope);
+	                                          
+	                 response = (SoapObject)envelope.bodyIn;
+	                                                                                                          
+	                 } catch (Exception e) {
+	                     e.printStackTrace();
+	                 }
+					
+				return response;
+			}
+
+			@Override
+			protected void onPreExecute() {
+
+				this.dialog.setMessage("Đang cập nhật dữ liệu cho mã vạch.....");              
+	            this.dialog.show();
+			}
+
+			@Override
+			protected void onPostExecute(SoapObject result) {
+				
+				if(getResponeBarcodeList(result)!=null){
+					
+					BarcodeList barcode[]=getResponeBarcodeList(result);
+					for(int i=0;i<barcode.length;i++){
+						String idbarcode=barcode[i].idBarcode;
+						String idimage=barcode[i].idImage;
+						String idbus=String.valueOf(barcode[i].numberBus);
+						
+						myDb.insertListBarcode(Integer.parseInt(idbus), idbarcode, idimage);
+					}
+					
+				}
+				
+				else{
+					 Toast.makeText(getApplicationContext(),"Result Found is ==  "+ result + "", Toast.LENGTH_LONG).show();
+				}
+				
+				super.onPostExecute(result);
+				
+				if (this.dialog.isShowing()) {
+
+	                this.dialog.dismiss();
+				 }
+			}
+			
+			
+			
+		}
+
+	
 	public static Bus[] getRespone(SoapObject soap){
 		
 		Bus[] busRes=new Bus[soap.getPropertyCount()];
@@ -335,6 +424,24 @@ public class Menufunction extends Activity {
 			coordinate.LATITUDE=Double.parseDouble(coo.getProperty(4).toString());
 			
 			cooR[i]=coordinate;
+		}
+		
+		return cooR;
+	}
+	
+	public static BarcodeList[] getResponeBarcodeList(SoapObject soap){
+		BarcodeList[]cooR=new BarcodeList[soap.getPropertyCount()];
+		
+		for(int i=0;i<cooR.length;i++){
+			SoapObject coo=(SoapObject) soap.getProperty(i);
+			
+			BarcodeList bar=new BarcodeList();
+			
+			bar.idBarcode=coo.getProperty(0).toString();
+			bar.idImage=coo.getProperty(1).toString();
+			bar.numberBus=Integer.parseInt(coo.getProperty(2).toString());
+			
+			cooR[i]=bar;
 		}
 		
 		return cooR;

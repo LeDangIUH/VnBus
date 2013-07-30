@@ -50,7 +50,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageButton
-        android:id="@+id/imgaddfavou"
+        android:id="@+id/imgTicket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/txtclearinfor"

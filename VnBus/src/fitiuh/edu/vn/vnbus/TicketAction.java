@@ -3,7 +3,9 @@ package fitiuh.edu.vn.vnbus;
 import fitiuh.edu.vn.gps.*;
 import fitiuh.edu.vn.barcode.*;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -24,6 +26,8 @@ public class TicketAction extends Activity implements OnClickListener{
 	Bundle buldle;
 	TextView formatTxt,contentTxt,gpsshow,phoneshow;
 	GPSTracker gpsTracker;
+	//call class
+	SwitchChoose switchChoose;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +37,10 @@ public class TicketAction extends Activity implements OnClickListener{
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
 		setContentView(R.layout.activity_ticket);
 		
-		
 		//set on choose ticket
 		accept=(Button) findViewById(R.id.btnacceptticket);
-		accept.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				
-				
-			}
-		});
+		accept.setOnClickListener(this);
+		
 		
 		//set on no choose ticket
 		dismiss=(Button) findViewById(R.id.btnNoAcceptticket);
@@ -61,10 +58,25 @@ public class TicketAction extends Activity implements OnClickListener{
 			}
 		});
 		
-		formatTxt=(TextView) findViewById(R.id.scan_format);
-		contentTxt=(TextView) findViewById(R.id.scan_content);
+		//formatTxt=(TextView) findViewById(R.id.scan_format);
+		//contentTxt=(TextView) findViewById(R.id.scan_content);
+		
 		scan=(Button) findViewById(R.id.scan_button);
-		scan.setOnClickListener(this);
+		scan.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//dialogShowOK("MaTuyen11");
+				switchChoose=new SwitchChoose();
+				int a=switchChoose.getnumberBus("MaTuyen11");
+				
+				if(a==0){
+					dialogShowNoValid();
+				}else{
+					dialogShowOK("MaTuyen1");
+				}
+			}
+		});
 		
 		
 		gpsshow=(TextView) findViewById(R.id.txtshowgps);
@@ -95,16 +107,50 @@ public class TicketAction extends Activity implements OnClickListener{
 			}
 		});
 		
+		
+		
 		phoneshow=(TextView) findViewById(R.id.show_phonetxt);
 		phone=(Button) findViewById(R.id.phone_btn);
 		phone.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				TelephonyManager manger=(TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-				phoneshow.setText(manger.getLine1Number());
+				//TelephonyManager manger=(TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+				//phoneshow.setText(manger.getLine1Number());
+				//phoneshow.setText(manger.getSimSerialNumber());
+				
+				//phoneshow.setText(getMy10DigitPhoneNumber());
+				
+				TelephonyManager tm=(TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+				
+				//phoneshow.setText(tm.getLine1Number());
+				phoneshow.setText(tm.getSimSerialNumber());
 			}
 		});
+	}
+	
+	private String getMyPhoneNumber(){
+        TelephonyManager mTelephonyMgr;
+        mTelephonyMgr = (TelephonyManager)
+            getSystemService(Context.TELEPHONY_SERVICE); 
+        return mTelephonyMgr.getLine1Number();
+    }
+
+    private String getMy10DigitPhoneNumber(){
+        String s = getMyPhoneNumber();
+        return s.substring(2);
+    }
+	
+	@Override
+	public void onClick(View v) {
+		//check for scan button
+		if(v.getId()==R.id.btnacceptticket){
+			//instantiate ZXing integration class
+			IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+			//start scanning
+			scanIntegrator.initiateScan();
+		}
+		
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -116,9 +162,17 @@ public class TicketAction extends Activity implements OnClickListener{
 			String scanContent = scanningResult.getContents();
 			//get format name of data scanned
 			String scanFormat = scanningResult.getFormatName();
-			//output to UI
-			formatTxt.setText("FORMAT: "+scanFormat);
-			contentTxt.setText("CONTENT: "+scanContent);
+			//---output to UI
+			//formatTxt.setText("FORMAT: "+scanFormat);
+			//contentTxt.setText("CONTENT: "+scanContent);
+			//Toast.makeText(getApplicationContext(),String.valueOf(callnumBus(scanContent)),Toast.LENGTH_LONG).show();
+			if(callnumBus(scanContent)==0){
+				dialogShowNoValid();
+			}
+			else {
+				dialogShowOK(scanContent);
+			}
+			
 		}
 		else{
 			//invalid scan data or scan canceled
@@ -128,21 +182,70 @@ public class TicketAction extends Activity implements OnClickListener{
 		}
 	}
 	
+	//show dialog
+	public void dialogShowOK(String scanContent)
+	{
+		AlertDialog.Builder alert=new AlertDialog.Builder(TicketAction.this);
+		alert.setTitle("Hệ thống vận tại công cộng TP.HCM");
+		
+		alert.setMessage("Chào mừng bạn đến với xe buýt số "+String.valueOf(callnumBus(scanContent)));
+		alert.setCancelable(true);
+		alert.setIcon(R.drawable.valid);
+		alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				intent=new Intent(TicketAction.this, Menufunction.class);
+				startActivity(intent);
+			}
+		});
+		
+		AlertDialog alertDialog = alert.create();
+		alertDialog.show();
+	}
+	
+	//show dialog when id no valid
+	
+	public void dialogShowNoValid(){
+		AlertDialog.Builder alert=new AlertDialog.Builder(TicketAction.this);
+		alert.setTitle("Mã vạch không hợp lệ !!!");
+		
+		alert.setMessage("Bạn có muốn thử lại ? ");
+		alert.setCancelable(true);
+		alert.setIcon(R.drawable.warn);
+		alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				accept.performClick();
+			}
+		});
+		
+		alert.setNegativeButton("Cancle",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		
+		AlertDialog alertDialog = alert.create();
+		alertDialog.show();
+	}
+	
+	//call number bus from switchchoose 
+	public int callnumBus(String scanContent){
+		switchChoose=new SwitchChoose();
+			
+		return switchChoose.getnumberBus(scanContent);
+	}
+	
 	@Override
 	public void onOptionsMenuClosed(Menu menu) {
 		// TODO Auto-generated method stub
 		super.onOptionsMenuClosed(menu);
 	}
 
-	@Override
-	public void onClick(View v) {
-		//check for scan button
-				if(v.getId()==R.id.scan_button){
-					//instantiate ZXing integration class
-					IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-					//start scanning
-					scanIntegrator.initiateScan();
-				}
-	}
+	
 
 }
