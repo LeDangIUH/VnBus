@@ -89,7 +89,7 @@ public class BusDBAdapter {
 
 	
 	// Get a specific row (by rowId)
-	public Cursor getRowTicket_NumberBus(int rowId) {
+	public Cursor getRowTicket_Barcode(int rowId) {
 		String where = KEY_ROWIDnumbus + "=" + rowId;
 		Cursor c = 	db.query(true, DATABASE_TABLE1, ALL_KEYSTicket, where, null, null, null, null, null);
 		if (c != null) {
@@ -99,7 +99,7 @@ public class BusDBAdapter {
 	}
 		
 	// Get a specific row (by rowId)
-	public Cursor getRowTicket_Barcode(String rowId) {
+	public Cursor getRowTicket_Numberbus(String rowId) {
 		String where = KEY_BARCODEid+" LIKE "+"'"+rowId+"'";
 		Cursor c = 	db.query(true, DATABASE_TABLE1, ALL_KEYSTicket, where, null, null, null, null, null);
 		if (c != null) {

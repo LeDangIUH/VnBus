@@ -1,67 +1,75 @@
 package fitiuh.edu.vn.vnbus;
 
+import fitiuh.edu.vn.gps.*;
+import fitiuh.edu.vn.barcode.*;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.AndroidHttpTransport;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.telephony.TelephonyManager;
+import android.text.format.Time;
 import android.text.style.BulletSpan;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import fitiuh.edu.vn.database.*;
+import fitiuh.edu.vn.gps.GPSTracker;
 
-public class Menufunction extends Activity {
+public class Menufunction extends Activity implements OnClickListener {
 	
-	ImageButton IMG_SHARE,IMG_BOOKMARKS,IMG_ROUTERLIST,IMG_SEARCHS,IMG_SETUP,IMG_TICKET;
 	Intent intent;
 	BusDBAdapter myDb;
 	Bundle bundle;
+	Button ticketP,booLove,inforBus,seeRoad;
 	
-	/**
-	 * Get data from services
-	 */
 	Bus infor=new Bus();
 	Coordinate coordinate=new Coordinate();
-	//InetAddress ipAddress;
+	
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.101:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.110:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
+	
+	GPSTracker gpsTracker;
+	ShareLocation sharelocaion;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_menufunction);
+		setContentView(R.layout.acitivity_dashboardmenufunction);
 		
-		IMG_SHARE=(ImageButton) findViewById(R.id.ImgShare);
-		IMG_BOOKMARKS=(ImageButton) findViewById(R.id.imgBookmarks);
-		IMG_ROUTERLIST=(ImageButton) findViewById(R.id.imgRouterlist);
-		IMG_SEARCHS=(ImageButton) findViewById(R.id.ImgSearchs);
-		IMG_SETUP=(ImageButton) findViewById(R.id.imgSetup);
-		IMG_TICKET=(ImageButton) findViewById(R.id.imgTicket);
-		
+		ticketP=(Button) findViewById(R.id.dashboard_button_payticket);
+		booLove=(Button) findViewById(R.id.dashboard_button_bookmark);
+		inforBus=(Button) findViewById(R.id.dashboard_button_ListInfoBus);
+		seeRoad=(Button) findViewById(R.id.dashboard_button_SeeandSharelocation);
+				
 		openDB();
 		CheckDBBusInfor();
 		
-		IMG_SHARE.setOnClickListener(new OnClickListener() {
-			 
-			@Override
-			public void onClick(View v) {
-				intent=new Intent(Menufunction.this,ShareFunction.class);
-				startActivity(intent);
-			}
-		});
 		
-		IMG_BOOKMARKS.setOnClickListener(new OnClickListener() {
+		
+		//event for scan barcode for pay money when start bus
+		ticketP.setOnClickListener(this);
+		
+		//event for see bookmark
+		booLove.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -71,45 +79,157 @@ public class Menufunction extends Activity {
 			}
 		});
 		
+		//see road from map and see ticket electronics
+		seeRoad.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				intent=new Intent(Menufunction.this,ShareFunction.class);
+				startActivity(intent);
+				
+			}
+		});
 		
-		IMG_ROUTERLIST.setOnClickListener(new OnClickListener() {
+		//search information of bus 
+		inforBus.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				intent=new Intent(Menufunction.this,RouterListsFunction.class);
 				startActivity(intent);
+				
 			}
 		});
 		
-		IMG_SEARCHS.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				intent=new Intent(Menufunction.this,SearchsFunction.class);
-				startActivity(intent);
-			}
-		});
-		
+		/*		
 		IMG_SETUP.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				
+				boolean check=isNetworkOnline();
 				//String id=callIdChooseDismiss();
 				
-				Toast.makeText(getApplicationContext(),String.valueOf(callIdChooseDismiss()), Toast.LENGTH_LONG).show();
-			}
-		});
-		
-		IMG_TICKET.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				//Toast.makeText(getApplicationContext(),String.valueOf(getPhoneIdSim()), Toast.LENGTH_LONG).show();
+				if (check==false) {
+					Toast.makeText(getApplicationContext(),"No connect internet", Toast.LENGTH_LONG).show();
+				}
+				if(check==true){
+					Toast.makeText(getApplicationContext(),"Connect internet ", Toast.LENGTH_LONG).show();
+				}
 				
+			
 			}
-		});
+		});*/
+			
 	}
+	
+	
+	//Pay ticket when move with bus
+	@Override
+	public void onClick(View v) {
+		
+		turnGPSOn();
+		
+		boolean check=isNetworkOnline();
+		
+		if(check==true){
+			//check for scan button
+			if(v.getId()==R.id.dashboard_button_payticket){
+			//instantiate ZXing integration class
+			IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+			//start scanning
+			scanIntegrator.initiateScan();
+			}
+		}
+		else{
+			dialogNoAcceptInternet();
+		}
+		
+		
+		
+	}
+	
+	//check internet
+	public boolean isNetworkOnline() {
+	    boolean status=false;
+	    try{
+	        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	        NetworkInfo netInfo = cm.getNetworkInfo(0);
+	        if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
+	            status= true;
+	        }else {
+	            netInfo = cm.getNetworkInfo(1);
+	            if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
+	                status= true;
+	        }
+	    }catch(Exception e){
+	        e.printStackTrace();  
+	        return false;
+	    }
+	    return status;
+
+	    } 
+	
+	//set up auto gps 
+	private void turnGPSOn() {
+
+	    String provider = android.provider.Settings.Secure.getString(
+	            getContentResolver(),
+	            android.provider.Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+	    if (!provider.contains("gps")) { // if gps is disabled
+	        final Intent poke = new Intent();
+	        poke.setClassName("com.android.settings",
+	                "com.android.settings.widget.SettingsAppWidgetProvider");
+	        poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+	        poke.setData(Uri.parse("3"));
+	        sendBroadcast(poke);
+	    }
+	}
+	
+	//show Scan result from Barcode application
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		
+		String valid;
+		//retrieve result of scanning - instantiate ZXing object
+		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+		//check we have a valid result
+		if (scanningResult != null) {
+			//get content from Intent Result
+			String scanContent = scanningResult.getContents();
+			//get format name of data scanned
+			String scanFormat = scanningResult.getFormatName();
+			//---output to UI
+			//formatTxt.setText("FORMAT: "+scanFormat);
+			//contentTxt.setText("CONTENT: "+scanContent);
+			
+			valid=callnumBus(scanContent);
+			
+			//show dialog not validation
+			if(valid==null){
+				dialogShowNoValid();
+			}
+			
+			//show dialog ok and share location first
+			if(valid!=null) {
+				
+				//show dialog
+				dialogShowOK(scanContent);
+				
+				//share location
+				sharelocaion=new ShareLocation();
+				sharelocaion.callShare(Integer.parseInt(valid), getPhoneIdSim(), getLongitude(), getLatitude(), getTimeShare());
+			}
+			
+		}
+		else{
+			//invalid scan data or scan canceled
+			Toast toast = Toast.makeText(getApplicationContext(), 
+					"No scan data received!", Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
+	
 	
 	@Override
 	protected void onDestroy() {
@@ -117,10 +237,13 @@ public class Menufunction extends Activity {
 		closeDB();
 	}
 	
+	//open database in mobi
 	private void openDB() {
 		myDb = new BusDBAdapter(this);
 		myDb.open();
 	}
+	
+	//close database
 	private void closeDB() {
 		myDb.close();
 	}
@@ -143,7 +266,95 @@ public class Menufunction extends Activity {
 		
 	}
 	
+	//show dialog validation with id barcode in sqlite
+	public void dialogShowOK(String scanContent)
+	{
+		AlertDialog.Builder alert=new AlertDialog.Builder(Menufunction.this);
+		alert.setTitle("Hệ thống vận tại công cộng TP.HCM");
+			
+		alert.setMessage("Chào mừng bạn đến với xe buýt số "+String.valueOf(callnumBus(scanContent)));
+		alert.setCancelable(true);
+		alert.setIcon(R.drawable.valid);
+		alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+				
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+			
+			AlertDialog alertDialog = alert.create();
+			alertDialog.show();
+	}
+	
+	//show dialog when barcode not valid
+	public void dialogShowNoValid(){
+		AlertDialog.Builder alert=new AlertDialog.Builder(Menufunction.this);
+		alert.setTitle("Mã vạch không hợp lệ !!!");
+		
+		alert.setMessage("Bạn có muốn thử lại ? ");
+		alert.setCancelable(true);
+		alert.setIcon(R.drawable.warn);
+		alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				ticketP.performClick();
+			}
+		});
+		
+		alert.setNegativeButton("Cancle",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		
+		AlertDialog alertDialog = alert.create();
+		alertDialog.show();
+	}
+	
+	public void dialogNoAcceptInternet(){
+		AlertDialog.Builder alert=new AlertDialog.Builder(Menufunction.this);
+		alert.setTitle("Bạn cần kết nối internet để thực hiện!!!");
+		
+		alert.setMessage("Bạn có muốn kết nối internet? ");
+		alert.setCancelable(true);
+		alert.setIcon(R.drawable.warn);
+		alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
+			}
+		});
+		
+		alert.setNegativeButton("Cancle",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		
+		AlertDialog alertDialog = alert.create();
+		alertDialog.show();
+	}
+
+	//Return number bus from id barcode scan
+	public String callnumBus(String scanContent){
+		String idbus=null;
+		Cursor c=myDb.getRowTicket_Numberbus(scanContent);
+		for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+			idbus=c.getString(0);
+		}
+		
+		return idbus;
+	}
+	
 	//Start connect web service and pasing data to sqlite
+	//updata information bus: name,money.....
 	public class backMethodInfor extends AsyncTask<SoapObject, SoapObject, SoapObject >{
 		
 
@@ -374,12 +585,10 @@ public class Menufunction extends Activity {
 	                this.dialog.dismiss();
 				 }
 			}
-			
-			
-			
+				
 		}
 
-	
+	//insert data bus in to array
 	public static Bus[] getRespone(SoapObject soap){
 		
 		Bus[] busRes=new Bus[soap.getPropertyCount()];
@@ -409,7 +618,9 @@ public class Menufunction extends Activity {
 		return busRes;
 	}
 	
+	//insert coordinate into array from web services
 	public static Coordinate[] getResponeCoordinate(SoapObject soap){
+		
 		Coordinate []cooR=new Coordinate[soap.getPropertyCount()];
 		
 		for(int i=0;i<cooR.length;i++){
@@ -429,7 +640,9 @@ public class Menufunction extends Activity {
 		return cooR;
 	}
 	
+	//insert barcode id into array from web services
 	public static BarcodeList[] getResponeBarcodeList(SoapObject soap){
+		
 		BarcodeList[]cooR=new BarcodeList[soap.getPropertyCount()];
 		
 		for(int i=0;i<cooR.length;i++){
@@ -447,7 +660,33 @@ public class Menufunction extends Activity {
 		return cooR;
 	}
 	
+	public String getTimeShare(){
+		
+		Time today=new Time(Time.getCurrentTimezone());
+		today.setToNow();
+		
+		return today.format("%k:%M:%S");
+	}
 	
+	public double getLongitude(){
+		
+		gpsTracker=new GPSTracker(Menufunction.this);
+		
+		return gpsTracker.getLongitude();
+	}
+	
+	public double getLatitude(){
+		
+		gpsTracker=new GPSTracker(Menufunction.this);
+		
+		return gpsTracker.getLatitude();
+	}
+	
+	public double getPhoneIdSim(){
+		
+		TelephonyManager tm=(TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+		return Double.parseDouble(tm.getSimSerialNumber());
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -455,16 +694,6 @@ public class Menufunction extends Activity {
 		getMenuInflater().inflate(R.menu.menufunction, menu);
 		return true;
 	}
-	
-	public int callIdChooseDismiss() {
-		
-		intent=new Intent();
-		intent=getIntent();
-		bundle=intent.getBundleExtra("idChooseNo");
-		
-		return bundle.getInt("dismiss");
-	}
-	
 	
 
 }

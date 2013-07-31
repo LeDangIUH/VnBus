@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+     <fitiuh.edu.vn.vnbus.DashboardMenuFuncionLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        
+        <Button android:id="@+id/dashboard_button_payticket"
+            android:text="Kiểm soát vé"
+            android:drawableTop="@drawable/bookmark5"
+            style="@style/DashboardButton"
+            android:height="300px"
+            android:width="300px" />
+        
+        <Button
+            android:id="@+id/dashboard_button_bookmark"
+            style="@style/DashboardButton"
+            android:drawableTop="@drawable/bookmark5"
+            android:text="Bookmarks"
+            android:height="300px"
+            android:width="300px" />
+        
+        <Button android:id="@+id/dashboard_button_SeeandSharelocation"
+            android:text="Lộ trình buýt"
+            android:drawableTop="@drawable/bookmark5"
+            style="@style/DashboardButton"
+            android:height="300px"
+            android:width="300px" />
+        
+        <Button android:id="@+id/dashboard_button_ListInfoBus"
+            android:text="Thông tin buýt"
+            android:drawableTop="@drawable/bookmark5"
+            style="@style/DashboardButton"
+            android:height="300px"
+            android:width="300px" />
+        
+        
+        
+    </fitiuh.edu.vn.vnbus.DashboardMenuFuncionLayout>
+    
+
+</RelativeLayout>

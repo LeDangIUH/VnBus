@@ -3,24 +3,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/shgps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="20dp"
-        android:text="GPS"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <ImageView
         android:id="@+id/imgnumbussociety"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/shgps"
-        android:layout_below="@+id/shgps"
-        android:layout_marginTop="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="14dp"
         android:src="@drawable/so0" />
+
+    <TextView
+        android:id="@+id/txtnamebusgps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imgnumbussociety"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/imgnumbussociety"
+        android:text="Tuyến xe buýt" />
+
+    <TextView
+        android:id="@+id/txttimegps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgnumbussociety"
+        android:layout_below="@+id/imgnumbussociety"
+        android:layout_marginTop="48dp"
+        android:text="Thời gian:" />
+
+    <TextView
+        android:id="@+id/txtspeedgps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txttimegps"
+        android:layout_below="@+id/txttimegps"
+        android:layout_marginTop="28dp"
+        android:text="Tốc độ:" />
+
+    <TextView
+        android:id="@+id/txtshowtimegps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txttimegps"
+        android:layout_alignBottom="@+id/txttimegps"
+        android:layout_marginLeft="26dp"
+        android:layout_toRightOf="@+id/txtnamebusgps"
+        android:text="hh:mm:ss" />
+
+    <TextView
+        android:id="@+id/txtshowspeedgps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtspeedgps"
+        android:layout_alignBottom="@+id/txtspeedgps"
+        android:layout_alignLeft="@+id/txtshowtimegps"
+        android:text="...km/h" />
+
+    <Button
+        android:id="@+id/btnStopsharegps"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtspeedgps"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
+        android:text="Dừng chia sẻ vị trí " />
 
 </RelativeLayout>
