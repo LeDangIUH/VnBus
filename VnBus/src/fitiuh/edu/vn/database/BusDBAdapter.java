@@ -228,7 +228,81 @@ public class BusDBAdapter {
 		c.close();
 	}
 	
-	//Create dabase BusInformation
+	//create database information share
+	public static final String DATABASE_TABLE4="shareInformation";
+	public static final String KEY_ROWIDSHARE = "_id";
+	public static final int COL_ROWIDSHARE = 0;
+	
+	public static final String KEY_BUSNUMSHARE="MaTuyen";
+	public static final String KEY_IDPHONE="SoDienThoaiSim";
+	public static final String KEY_LATSHARE="ViDo";
+	public static final String KEY_LNGSHARE="KinhDo";
+	public static final String KEY_TIMESHARE="ThoiGian";
+	
+	public static final int COL_BUSNUMSHARE=1;
+	public static final int COL_IDPHONE=2;
+	public static final int COL_LATSHARE=3;
+	public static final int COL_LNGSHARE=4;
+	public static final int COL_TIMESHARE=5;
+	
+	public static final String[] ALL_KEYSShare = new String[] {KEY_ROWIDSHARE,KEY_BUSNUMSHARE,KEY_IDPHONE,KEY_LATSHARE,KEY_LNGSHARE,KEY_TIMESHARE};
+
+	private static final String DATABASE_CREATE_SQLShare =
+			"create table " + DATABASE_TABLE4 + " ("
+			+ KEY_ROWIDSHARE + " integer primary key autoincrement, "
+			+ KEY_BUSNUMSHARE + " integer not null, "
+			+ KEY_IDPHONE + " double not null, "
+			+ KEY_LATSHARE + " double not null, "
+			+ KEY_LNGSHARE + " double not null, "
+			+ KEY_TIMESHARE + " string not null "
+			+ ");";
+	
+	//insert database
+	public long insertRowShare(int MaTuyen,Double SoDienThoai,Double ViDo, Double KinhDo, String ThoiGianShare) {
+		
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(KEY_BUSNUMSHARE,MaTuyen);
+		initialValues.put(KEY_IDPHONE, SoDienThoai);
+		initialValues.put(KEY_LATSHARE,ViDo);
+		initialValues.put(KEY_LNGSHARE, KinhDo);
+		initialValues.put(KEY_TIMESHARE, ThoiGianShare);
+		
+		// Insert it into the database.
+		return db.insert(DATABASE_TABLE4, null, initialValues);
+	}
+	
+	//get all database
+	public Cursor getAllTABLEShare() {
+		
+		String where = null;
+		return db.query(true, DATABASE_TABLE4, ALL_KEYSShare, 
+								where, null, null, null, null, null);
+			//if (c != null) {
+				//c.moveToFirst();
+			//}
+			//return c;
+	}
+	
+	// Delete a row from the database, by rowId (primary key)
+		public boolean deleteRowSHARE(int rowId) {
+			String where = KEY_ROWIDSHARE + "=" + rowId;
+			return db.delete(DATABASE_TABLE4, where, null) != 0;
+		}
+	
+	//delete all data in the database
+	public void deleteAllTABLEShare() {
+		Cursor c = getAllTABLEShare();
+		long rowId = c.getColumnIndexOrThrow(KEY_ROWIDSHARE);
+		if (c.moveToFirst()) {
+			do {
+				deleteRowSHARE(c.getInt((int) rowId));		
+			} while (c.moveToNext());
+		}
+		c.close();
+	}
+	
+	
+	//Create database BusInformation
 	public static final String DATABASE_TABLE = "BusInformation";
 	
 	public static final String KEY_BUSNUMBER="_id";
@@ -403,6 +477,7 @@ public class BusDBAdapter {
 			_db.execSQL(DATABASE_CREATE_SQLFavour);
 			_db.execSQL(DATABASE_CREATE_SQLOrdi);
 			_db.execSQL(DATABASE_CREATE_SQLTicket);
+			_db.execSQL(DATABASE_CREATE_SQLShare);
 		}
 
 		@Override
@@ -415,6 +490,7 @@ public class BusDBAdapter {
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE1);
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE2);
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE3);
+			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE4);
 			
 			// Recreate new database:
 			onCreate(_db);

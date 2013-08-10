@@ -223,27 +223,25 @@ containing a value of this type.
         public static final int wattingscream=0x7f020018;
     }
     public static final class id {
-        public static final int ISearchRouterList=0x7f040045;
-        public static final int IconAbout=0x7f040043;
-        public static final int IconFilter=0x7f040046;
+        public static final int ISearchRouterList=0x7f040043;
+        public static final int IconAbout=0x7f040041;
+        public static final int IconFilter=0x7f040044;
         public static final int ImgSearchs=0x7f04001a;
         public static final int ImgShare=0x7f040016;
         public static final int Imgmaprouter=0x7f040011;
         public static final int bottomToTop=0x7f040006;
-        public static final int btnNoAcceptticket=0x7f040037;
+        public static final int btnNoAcceptticket=0x7f040035;
         public static final int btnStopsharegps=0x7f040030;
-        public static final int btnWhatShare=0x7f040041;
-        public static final int btnWhatShareCancle=0x7f040040;
-        public static final int btnacceptticket=0x7f040036;
-        public static final int callspeed=0x7f040032;
-        public static final int calltime=0x7f040034;
+        public static final int btnWhatShare=0x7f04003f;
+        public static final int btnWhatShareCancle=0x7f04003e;
+        public static final int btnacceptticket=0x7f040034;
         public static final int checkFilterChoose=0x7f040028;
-        public static final int chooseoutwardreturn=0x7f040044;
+        public static final int chooseoutwardreturn=0x7f040042;
         public static final int dashboard_button_ListInfoBus=0x7f04000c;
         public static final int dashboard_button_SeeandSharelocation=0x7f04000b;
         public static final int dashboard_button_bookmark=0x7f04000a;
         public static final int dashboard_button_payticket=0x7f040009;
-        public static final int gps_Button=0x7f04003b;
+        public static final int gps_Button=0x7f040039;
         public static final int hybrid=0x7f040004;
         public static final int imgBookmarks=0x7f040017;
         public static final int imgClearInfor=0x7f04000f;
@@ -260,18 +258,18 @@ containing a value of this type.
         public static final int mylayoutbookmark=0x7f04000d;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
-        public static final int phone_btn=0x7f04003d;
+        public static final int phone_btn=0x7f04003b;
         public static final int rightToLeft=0x7f040005;
         public static final int satellite=0x7f040002;
-        public static final int scan_button=0x7f040038;
-        public static final int scan_content=0x7f04003a;
-        public static final int scan_format=0x7f040039;
-        public static final int show_phonetxt=0x7f04003e;
+        public static final int scan_button=0x7f040036;
+        public static final int scan_content=0x7f040038;
+        public static final int scan_format=0x7f040037;
+        public static final int show_phonetxt=0x7f04003c;
         public static final int speedsociety=0x7f040033;
-        public static final int spinnerWhatShare=0x7f040042;
+        public static final int spinnerWhatShare=0x7f040040;
         public static final int spinnerchoose=0x7f040022;
         public static final int terrain=0x7f040003;
-        public static final int timesociety=0x7f040035;
+        public static final int timesociety=0x7f040032;
         public static final int topToBottom=0x7f040008;
         public static final int txtBookmarks=0x7f040018;
         public static final int txtFilterNumBus=0x7f040027;
@@ -281,7 +279,7 @@ containing a value of this type.
         public static final int txtSetup=0x7f04001d;
         public static final int txtShare=0x7f040015;
         public static final int txtTicket=0x7f04001f;
-        public static final int txtWhatShareDirec=0x7f04003f;
+        public static final int txtWhatShareDirec=0x7f04003d;
         public static final int txtaddbookmark=0x7f040013;
         public static final int txtclearinfor=0x7f040010;
         public static final int txtdirection=0x7f040021;
@@ -289,7 +287,7 @@ containing a value of this type.
         public static final int txtnamebusgps=0x7f04002b;
         public static final int txtoutwardreturn=0x7f040023;
         public static final int txtshowInforbus=0x7f040024;
-        public static final int txtshowgps=0x7f04003c;
+        public static final int txtshowgps=0x7f04003a;
         public static final int txtshowspeedgps=0x7f04002f;
         public static final int txtshowtimegps=0x7f04002e;
         public static final int txtspeedgps=0x7f04002d;
@@ -419,6 +417,7 @@ containing a value of this type.
         public static final int DashboardButton=0x7f070004;
         public static final int MenuFunction=0x7f070002;
         public static final int TitleTextStyle=0x7f070003;
+        public static final int txtinLsViewSociaty=0x7f070005;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

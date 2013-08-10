@@ -44,7 +44,7 @@ public class Menufunction extends Activity implements OnClickListener {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.110:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.109:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	GPSTracker gpsTracker;

@@ -7,7 +7,45 @@ public class SwitchChoose {
 	enum numberBus{MaTuyen1,MaTuyen2,MaTuyen3,MaTuyen4,MaTuyen5,MaTuyen6,MaTuyen7,
 				   MaTuyen8,MaTUyen9,MaTUyen10};
 	
-	
+	//get id image from number bus
+	public int imgBusFormData(int number) {
+		
+		int img=0;
+		
+		switch(number){
+		
+		case 1:
+			img= R.drawable.numbers_1_icon;
+			break;
+		case 2:
+			img= R.drawable.numbers_2_icon;
+			break;
+		case 3:
+			img= R.drawable.numbers_3_icon;
+			break;
+		case 4:
+			img= R.drawable.numbers_4_icon;
+			break;
+		case 5:
+			img= R.drawable.numbers_5_icon;
+			break;
+		case 6:
+			img= R.drawable.numbers_6_icon;
+			break;
+		case 7:
+			img= R.drawable.numbers_7_icon;
+			break;
+		case 8:
+			img= R.drawable.numbers_8_icon;
+			break;
+		case 9:
+			img= R.drawable.numbers_9_icon;
+			break;
+		}
+		
+		return img;
+		
+	}
 	//get id image
 	public String barCodeScan(String idBarcodeScan){
 		

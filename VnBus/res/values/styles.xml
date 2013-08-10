@@ -38,5 +38,10 @@
 		<item name="android:textColor">#001A57</item>
 		<item name="android:background">#EEEEEE</item>
 	</style>
+	
+    <style name="txtinLsViewSociaty">
+		<item name="android:textColor">#001A57</item>
+    </style>
+	
 
 </resources>
