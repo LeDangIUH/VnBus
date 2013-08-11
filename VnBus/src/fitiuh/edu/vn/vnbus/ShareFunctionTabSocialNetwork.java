@@ -15,6 +15,8 @@ import org.ksoap2.transport.AndroidHttpTransport;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -58,7 +60,7 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.109:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.100:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	BusDBAdapter myDb;
@@ -187,6 +189,7 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 				for(int i=0;i<share.length;i++){
 					String longitude=String.valueOf(share[i].LONGITUDE);
 					String numbus=convertStringImage(String.valueOf(share[i].IDNUMBERBUS));
+					String numbusMarkers=String.valueOf(share[i].IDNUMBERBUS);
 					String PhoneId=String.valueOf((share[i].PHONEIDSIM));
 					String timeShare=share[i].TIMESHARE;
 					String latitude=String.valueOf(share[i].LATITUDE);
@@ -196,10 +199,13 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 					
 					
 					
+					
 					map.put("numbus",numbus);
-					map.put("PhoneId", PhoneId);
-					map.put("longitude",longitude);
+					map.put("numbusMarkers", numbusMarkers);
+					//map.put("PhoneId", PhoneId);
 					map.put("latitude",latitude);
+					map.put("longitude",longitude);
+					
 					map.put("timeShare","Thời gian: "+timeShare);
 					
 					/**
@@ -211,21 +217,18 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 					
 					//myDb.insertRowShare(Integer.parseInt(numbus),Double.valueOf(PhoneId),Double.valueOf(latitude), Double.valueOf(longitude),timeShare);
 					
-					/**
-					 * call show listview
-					 */
-					//populateListViewFromDB();
-					
-					//call show map
-					
-					//drop table
-					//myDb.deleteAllTABLEShare();
 				}
 				
+				//show listview
 				SimpleAdapter appAdapter=new SimpleAdapter(getActivity().getApplicationContext(),myList,R.layout.activity_sociatynetworkitem,
 						new String[]{"numbus","timeShare"},new int[]{R.id.imgnumbussociety,R.id.timesociety});
 				
 				ls.setAdapter(appAdapter);
+				
+				//add marker to map
+				showMarker("numbusMarkers","latitude","longitude");
+				
+				
 				
 			}
 			
@@ -275,50 +278,32 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 		return Integer.toString(switchChoose.imgBusFormData(numBus));
 	}
 	
-	private void drawMarker(LatLng point){
+	private void drawMarker(String numBus,LatLng point){
     	// Creating an instance of MarkerOptions
     	MarkerOptions markerOptions = new MarkerOptions();					
     		
     	// Setting latitude and longitude for the marker
     	markerOptions.position(point);
+    	//markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.action_about));
     		
+    	//markerOptions.title("1");
+    	markerOptions.icon(BitmapDescriptorFactory.fromResource(switchChoose.iconMarkers(numBus)));
+    	
     	// Adding marker on the Google Map
-    	map.addMarker(markerOptions);    		
+    	map.addMarker(markerOptions);
     }
 	
-	public void showMarker(){
+	public void showMarker(String numBus,String nameHMLatitude,String nameHMLongitude){
 		
+		for (HashMap<String, String> map: myList) {
+			
+			Double latitude=Double.valueOf(map.get(nameHMLatitude));
+			Double longitude=Double.valueOf(map.get(nameHMLongitude));
+			numBus=map.get("numbusMarkers");
+			
+			LatLng location=new LatLng(latitude,longitude);
+			drawMarker(numBus,location);
+		}
 	}
-	
-	
-	/*public void populateListViewFromDB() {
-		
-		Cursor cursor = myDb.getAllTABLEShare();
-		
-		// Allow activity to manage lifetime of the cursor.
-		// DEPRECATED! Runs on the UI thread, OK for small/short queries.
-		getActivity().startManagingCursor(cursor);
-			
-		// Setup mapping from cursor to view fields:
-		String[] fromFieldNames = new String[]
-				{BusDBAdapter.KEY_BUSNUMSHARE,  BusDBAdapter.KEY_TIMESHARE};
-		int[] toViewIDs = new int[]
-				{R.id.timesociety,          R.id.speedsociety};
-			
-		// Create adapter to may columns of the DB onto elemesnt in the UI.
-		SimpleCursorAdapter myCursorAdapter = 
-				new SimpleCursorAdapter(
-						getActivity().getApplicationContext(),		// Context
-						R.layout.activity_sociatynetworkitem,	// Row layout template
-						cursor,					// cursor (set of DB records to map)
-						fromFieldNames,			// DB Column names
-						toViewIDs				// View IDs to put information in
-						);
-			
-		// Set the adapter for the list view
-		ls.setAdapter(myCursorAdapter);
-		
-	}*/
-	
 	
 }

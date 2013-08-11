@@ -46,6 +46,38 @@ public class SwitchChoose {
 		return img;
 		
 	}
+	
+	public int iconMarkers(String numbus){
+		
+		int img=0;
+		int numBus=Integer.parseInt(numbus);
+		switch(numBus){
+		case 1:
+			img=R.drawable.marker1;
+			break;
+		case 2:
+			img=R.drawable._marker1;
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		
+		}
+		
+		return img;
+	}
+	
 	//get id image
 	public String barCodeScan(String idBarcodeScan){
 		

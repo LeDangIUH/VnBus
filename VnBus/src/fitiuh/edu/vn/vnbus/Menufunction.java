@@ -44,7 +44,7 @@ public class Menufunction extends Activity implements OnClickListener {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.109:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.100:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	GPSTracker gpsTracker;
@@ -75,6 +75,7 @@ public class Menufunction extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				intent=new Intent(Menufunction.this,BookMarksFunction.class);
 				startActivity(intent);
+				
 				
 			}
 		});
@@ -218,7 +219,7 @@ public class Menufunction extends Activity implements OnClickListener {
 				
 				//share location
 				sharelocaion=new ShareLocation();
-				sharelocaion.callShare(Integer.parseInt(valid), getPhoneIdSim(), getLongitude(), getLatitude(), getTimeShare());
+				sharelocaion.callShare(Integer.parseInt(valid), getPhoneIdSim(), getLatitude(), getLongitude(), getTimeShare());
 			}
 			
 		}
@@ -668,6 +669,13 @@ public class Menufunction extends Activity implements OnClickListener {
 		return today.format("%k:%M:%S");
 	}
 	
+	public double getLatitude(){
+		
+		gpsTracker=new GPSTracker(Menufunction.this);
+		
+		return gpsTracker.getLatitude();
+	}
+	
 	public double getLongitude(){
 		
 		gpsTracker=new GPSTracker(Menufunction.this);
@@ -675,12 +683,7 @@ public class Menufunction extends Activity implements OnClickListener {
 		return gpsTracker.getLongitude();
 	}
 	
-	public double getLatitude(){
-		
-		gpsTracker=new GPSTracker(Menufunction.this);
-		
-		return gpsTracker.getLatitude();
-	}
+	
 	
 	public double getPhoneIdSim(){
 		

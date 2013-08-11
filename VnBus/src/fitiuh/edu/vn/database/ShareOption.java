@@ -9,21 +9,21 @@ public class ShareOption implements KvmSerializable {
 	
 	public int IDNUMBERBUS;
 	public double PHONEIDSIM;
-	public double LONGITUDE;
 	public double LATITUDE;
+	public double LONGITUDE;
 	public String TIMESHARE;
 	
 	public ShareOption() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ShareOption(int iDNUMBERBUS, double pHONEIDSIM, double lONGITUDE,
-			double lATITUDE, String tIMESHARE) {
+	public ShareOption(int iDNUMBERBUS, double pHONEIDSIM,
+			double lATITUDE, double lONGITUDE, String tIMESHARE) {
 		super();
 		IDNUMBERBUS = iDNUMBERBUS;
 		PHONEIDSIM = pHONEIDSIM;
-		LONGITUDE = lONGITUDE;
 		LATITUDE = lATITUDE;
+		LONGITUDE = lONGITUDE;
 		TIMESHARE = tIMESHARE;
 	}
 

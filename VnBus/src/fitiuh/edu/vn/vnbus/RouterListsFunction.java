@@ -140,7 +140,7 @@ public class RouterListsFunction extends Activity {
     		
     	// Setting latitude and longitude for the marker
     	markerOptions.position(point);
-    		
+    	markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker1));
     	// Adding marker on the Google Map
     	map.addMarker(markerOptions);    		
     }
@@ -163,7 +163,7 @@ public class RouterListsFunction extends Activity {
 			Long=c.getDouble(c.getColumnIndex(BusDBAdapter.KEY_LNG));
 			Add=c.getString(c.getColumnIndex(BusDBAdapter.KEY_ADD));
 			
-			LatLng location =new LatLng(Long, lat);
+			LatLng location =new LatLng(lat,Long);
 			drawMarker(location);
 			
 			//Log.d(String.valueOf(lat), "kk");

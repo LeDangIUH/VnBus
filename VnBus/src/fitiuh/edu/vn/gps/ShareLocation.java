@@ -22,22 +22,22 @@ public class ShareLocation {
 	final String NAMESPACE="http://test_bus/";
 	final String METHOD_NAME="Share_Locations";
 	final String SOAP_ACTION="http://test_bus/Share_Locations";
-	final String URL="http://192.168.0.109:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.100:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	
 	int numberBus;
 	double phoneIdSim;
-	double Longitude;
 	double Latitude;
+	double Longitude;
 	String timeShare;
 	
-	public void callShare(int numberbus,double phoneidsim,double longitude,double latitude,String timeshare){
+	public void callShare(int numberbus,double phoneidsim,double latitude,double longitude,String timeshare){
 		
 		numberBus=numberbus;
 		phoneIdSim=phoneidsim;
-		Longitude=longitude;
 		Latitude=latitude;
+		Longitude=longitude;
 		timeShare=timeshare;
 	
 		new backMethod().execute();	
@@ -64,18 +64,19 @@ public class ShareLocation {
 	        pi1.setType(Double.class);
 	        request.addProperty(pi1);
 	        
-
 	        PropertyInfo pi2 = new PropertyInfo();
-	        pi2.setName("KinhDo");
+	        pi2.setName("ViDo");
 	        pi2.setType(Double.class);
-	        pi2.setValue(Longitude);
+	        pi2.setValue(Latitude);
 	        request.addProperty(pi2);
 	        
+	        
 	        PropertyInfo pi3 = new PropertyInfo();
-	        pi3.setName("ViDo");
+	        pi3.setName("KinhDo");
 	        pi3.setType(Double.class);
-	        pi3.setValue(Latitude);
+	        pi3.setValue(Longitude);
 	        request.addProperty(pi3);
+	        
 			
 	        PropertyInfo pi4=new PropertyInfo();
 	        pi4.setName("TimeShare");
