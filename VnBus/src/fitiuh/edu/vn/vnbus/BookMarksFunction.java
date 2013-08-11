@@ -24,11 +24,16 @@ public class BookMarksFunction extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bookmarksfunction);
+		
 		getActionBar().setTitle("Bookmarks");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		openDB();
 		StatusBookmarks();
+		
 		lv=(ListView) findViewById(R.id.lvshowbookmarks);
+		
+		//show listview
 		populateListViewFromDB();
 	}
 	
@@ -38,7 +43,9 @@ public class BookMarksFunction extends Activity {
 			
 			RelativeLayout relative=(RelativeLayout) findViewById(R.id.mylayoutbookmark);
 			myText=new TextView(this);
+			myText.setTextColor(R.style.txtinLsViewSociaty);
 			myText.setText("Hiện tại bạn chưa thêm Bookmarks vào.");
+			
 			relative.addView(myText);
 		}
 	}

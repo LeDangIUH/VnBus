@@ -5,14 +5,16 @@
 
     <ImageButton
         android:id="@+id/imgClearInfor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/bookmark5"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/txtclearinfor"
+        style="@style/txtdialogrouter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -23,15 +25,17 @@
 
     <ImageButton
         android:id="@+id/Imgmaprouter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
         android:layout_above="@+id/txtclearinfor"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="60dp"
         android:layout_toRightOf="@+id/txtclearinfor"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/bookmark5"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:id="@+id/txtmaprouter"
+        style="@style/txtdialogrouter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txtclearinfor"
@@ -41,6 +45,7 @@
 
     <TextView
         android:id="@+id/txtaddbookmark"
+        style="@style/txtdialogrouter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/txtmaprouter"
@@ -51,10 +56,11 @@
 
     <ImageButton
         android:id="@+id/imgTicket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txtclearinfor"
-        android:layout_alignLeft="@+id/txtaddbookmark"
-        android:src="@drawable/ic_launcher" />
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/bookmark5"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

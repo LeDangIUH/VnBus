@@ -24,6 +24,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import fitiuh.edu.vn.database.*;
 
 public class RouterListsFunction extends Activity {
@@ -34,8 +35,10 @@ public class RouterListsFunction extends Activity {
 	TextView txt;
 	Bundle bundle;
 	//map
+	ImageButton imgGo,imgReturn;
 	private final LatLng LOCATION_SURRREY = new LatLng(10.820908200869496,106.68407135789789);
 	private GoogleMap map;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,9 @@ public class RouterListsFunction extends Activity {
 		//Back MenuFunction
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		
+		/**
+		 * listview setting
+		 */
 		lv=(ListView) findViewById(R.id.lvShowRouter);
 		populateListViewFromDB();
 		
@@ -87,8 +92,12 @@ public class RouterListsFunction extends Activity {
 					
 					@Override
 					public void onClick(View v) {
+						
 						setContentView(R.layout.activity_sharefunction);
 						dialog.dismiss();
+						
+						imgGo=(ImageButton) findViewById(R.id.imgGo);
+						imgReturn=(ImageButton) findViewById(R.id.imgReturn);
 						
 						map=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 						/*map.addMarker(new MarkerOptions().position(LOCATION_SURRREY)
@@ -97,7 +106,31 @@ public class RouterListsFunction extends Activity {
 								.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));*/
 						map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
 						
+						
 						showMarker(numberbus,"di");
+
+						/**
+						 * image setting
+						 */
+						imgGo.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								//Toast.makeText(getApplicationContext(), "Go", Toast.LENGTH_LONG).show();
+								map.clear();
+								showMarker(numberbus,"di");
+							}
+						});
+						
+						imgReturn.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								//Toast.makeText(getApplicationContext(), "Return", Toast.LENGTH_LONG).show();
+								map.clear();
+								showMarker(numberbus,"ve");
+							}
+						});
 						
 					}
 				});

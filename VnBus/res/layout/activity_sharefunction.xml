@@ -11,4 +11,20 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <ImageButton
+        android:id="@+id/imgGo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/_go" />
+
+    <ImageButton
+        android:id="@+id/imgReturn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/imgGo"
+        android:src="@drawable/_return" />
+
 </RelativeLayout>
