@@ -198,33 +198,43 @@ containing a value of this type.
     public static final class drawable {
         public static final int _go=0x7f020000;
         public static final int _marker1=0x7f020001;
-        public static final int _return=0x7f020002;
-        public static final int action_about=0x7f020003;
-        public static final int action_search=0x7f020004;
-        public static final int action_settings=0x7f020005;
-        public static final int bookmark5=0x7f020006;
-        public static final int content_import_export=0x7f020007;
-        public static final int device_access_storage=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int mainlogo=0x7f02000a;
-        public static final int marker1=0x7f02000b;
-        public static final int navigation_refresh=0x7f02000c;
-        public static final int numbers_1_icon=0x7f02000d;
-        public static final int numbers_2_icon=0x7f02000e;
-        public static final int numbers_3_icon=0x7f02000f;
-        public static final int numbers_4_icon=0x7f020010;
-        public static final int numbers_5_icon=0x7f020011;
-        public static final int numbers_6_icon=0x7f020012;
-        public static final int numbers_7_icon=0x7f020013;
-        public static final int numbers_8_icon=0x7f020014;
-        public static final int numbers_9_icon=0x7f020015;
-        public static final int payticket=0x7f020016;
-        public static final int sliding_drawer_handle_bottom=0x7f020017;
-        public static final int so0=0x7f020018;
-        public static final int social_share=0x7f020019;
-        public static final int valid=0x7f02001a;
-        public static final int warn=0x7f02001b;
-        public static final int wattingscream=0x7f02001c;
+        public static final int _marker10=0x7f020002;
+        public static final int _marker2=0x7f020003;
+        public static final int _marker3=0x7f020004;
+        public static final int _marker4=0x7f020005;
+        public static final int _marker5=0x7f020006;
+        public static final int _marker6=0x7f020007;
+        public static final int _marker7=0x7f020008;
+        public static final int _marker8=0x7f020009;
+        public static final int _marker9=0x7f02000a;
+        public static final int _return=0x7f02000b;
+        public static final int action_about=0x7f02000c;
+        public static final int action_search=0x7f02000d;
+        public static final int action_settings=0x7f02000e;
+        public static final int bookmark5=0x7f02000f;
+        public static final int content_import_export=0x7f020010;
+        public static final int device_access_storage=0x7f020011;
+        public static final int ic_launcher=0x7f020012;
+        public static final int mainlogo=0x7f020013;
+        public static final int marker1=0x7f020014;
+        public static final int navigation_refresh=0x7f020015;
+        public static final int numbers_10_icon=0x7f020016;
+        public static final int numbers_1_icon=0x7f020017;
+        public static final int numbers_2_icon=0x7f020018;
+        public static final int numbers_3_icon=0x7f020019;
+        public static final int numbers_4_icon=0x7f02001a;
+        public static final int numbers_5_icon=0x7f02001b;
+        public static final int numbers_6_icon=0x7f02001c;
+        public static final int numbers_7_icon=0x7f02001d;
+        public static final int numbers_8_icon=0x7f02001e;
+        public static final int numbers_9_icon=0x7f02001f;
+        public static final int payticket=0x7f020020;
+        public static final int sliding_drawer_handle_bottom=0x7f020021;
+        public static final int so0=0x7f020022;
+        public static final int social_share=0x7f020023;
+        public static final int valid=0x7f020024;
+        public static final int warn=0x7f020025;
+        public static final int wattingscream=0x7f020026;
     }
     public static final class id {
         public static final int ISearchRouterList=0x7f040045;
@@ -235,7 +245,7 @@ containing a value of this type.
         public static final int Imgmaprouter=0x7f040011;
         public static final int bottomToTop=0x7f040006;
         public static final int btnNoAcceptticket=0x7f040037;
-        public static final int btnStopsharegps=0x7f040032;
+        public static final int btnStopsharegps=0x7f040030;
         public static final int btnWhatShare=0x7f040041;
         public static final int btnWhatShareCancle=0x7f040040;
         public static final int btnacceptticket=0x7f040036;
@@ -294,8 +304,8 @@ containing a value of this type.
         public static final int txtoutwardreturn=0x7f040023;
         public static final int txtshowInforbus=0x7f040024;
         public static final int txtshowgps=0x7f04003c;
-        public static final int txtshowspeedgps=0x7f040031;
-        public static final int txtshowtimegps=0x7f040030;
+        public static final int txtshowspeed=0x7f040032;
+        public static final int txtshowtimegps=0x7f040031;
         public static final int txtspeedgps=0x7f04002f;
         public static final int txttimegps=0x7f04002e;
     }
@@ -423,8 +433,10 @@ containing a value of this type.
         public static final int DashboardButton=0x7f070004;
         public static final int MenuFunction=0x7f070002;
         public static final int TitleTextStyle=0x7f070003;
+        public static final int txtShowticket=0x7f070008;
         public static final int txtdialogrouter=0x7f070006;
         public static final int txtinLsViewSociaty=0x7f070005;
+        public static final int txtrouterclear=0x7f070007;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

@@ -117,6 +117,7 @@ public class BusDBAdapter {
 		
 	public static final int COL_BUSNUMFavour = 0;
 	public static final int COL_BUSNAMEFavour = 1;
+	
 	public static final String[] ALL_KEYSFavour = new String[] {KEY_BUSNUMFavour, KEY_BUSNAMEFavour};
 
 	private static final String DATABASE_CREATE_SQLFavour =
@@ -145,6 +146,14 @@ public class BusDBAdapter {
 		}
 		return c;
 	}
+	
+	//delete row favourite 
+	// Delete a row from the database, by rowId (primary key)
+	public boolean deleteRowFavourite(int rowId) {
+		String where = KEY_BUSNUMFavour + "=" + rowId;
+		return db.delete(DATABASE_TABLE2, where, null) != 0;
+	}
+	
 	
 	//create table maps co-ordinate
 	public static final String DATABASE_TABLE3="OrdinateBus";
@@ -300,6 +309,63 @@ public class BusDBAdapter {
 		}
 		c.close();
 	}
+	
+	//create table store information bus when ticket
+	public static final String DATABASE_TABLE5="StoreBusTicket";
+			
+	public static final String KEY_BUSNUMStore="_id";
+	public static final String KEY_BUSTIMEStore = "ThoiGian";
+			
+	public static final int COL_BUSNUMStore = 0;
+	public static final int COL_BUSNAMEStore = 1;
+		
+	public static final String[] ALL_KEYSStore = new String[] {KEY_BUSNUMStore, KEY_BUSTIMEStore};
+
+	private static final String DATABASE_CREATE_SQLStore =
+			"create table " + DATABASE_TABLE5 + " ("
+			+ KEY_BUSNUMStore + " integer primary key, "
+			+ KEY_BUSTIMEStore + " string not null "
+			+ ");";
+	// Add a new set of values to the database.
+	public long insertRowStore(int _id, String Time) {
+						
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(KEY_BUSNUMStore,_id);
+		initialValues.put(KEY_BUSTIMEStore, Time);	
+		// Insert it into the database.
+		return db.insert(DATABASE_TABLE5, null, initialValues);
+	}
+		
+	//get row store
+	public Cursor getAllRowsStore() {
+				
+		String where = null;
+		Cursor c = 	db.query(true, DATABASE_TABLE5, ALL_KEYSStore, 
+										where, null, null, null, null, null);
+		if (c != null) {
+			c.moveToFirst();
+		}
+		return c;
+	}
+		
+	// Delete a row from the database, by rowId (primary key)
+	public boolean deleteRowStore(int rowId) {
+		String where = KEY_BUSNUMStore + "=" + rowId;
+		return db.delete(DATABASE_TABLE5, where, null) != 0;
+	}
+	
+	//delete all data in the database
+	public void deleteAllStore() {
+		Cursor c = getAllRowsStore();
+		long rowId = c.getColumnIndexOrThrow(KEY_BUSNUMStore);
+		if (c.moveToFirst()) {
+			do {
+				deleteRowStore(c.getInt((int) rowId));		
+			} while (c.moveToNext());
+		}
+		c.close();
+	}
+
 	
 	
 	//Create database BusInformation
@@ -478,6 +544,7 @@ public class BusDBAdapter {
 			_db.execSQL(DATABASE_CREATE_SQLOrdi);
 			_db.execSQL(DATABASE_CREATE_SQLTicket);
 			_db.execSQL(DATABASE_CREATE_SQLShare);
+			_db.execSQL(DATABASE_CREATE_SQLStore);
 		}
 
 		@Override
@@ -491,6 +558,7 @@ public class BusDBAdapter {
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE2);
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE3);
 			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE4);
+			_db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE5);
 			
 			// Recreate new database:
 			onCreate(_db);

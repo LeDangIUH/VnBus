@@ -1,8 +1,11 @@
 package fitiuh.edu.vn.vnbus;
 
 
+import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import fitiuh.edu.vn.barcode.SwitchChoose;
 import fitiuh.edu.vn.database.*;
@@ -11,6 +14,7 @@ import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.AndroidHttpTransport;
+import org.xmlpull.v1.XmlPullParserException;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,6 +25,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.R.integer;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.app.ProgressDialog;
@@ -28,6 +33,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -60,7 +66,7 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.100:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.108:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	BusDBAdapter myDb;
@@ -139,13 +145,17 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 	//Connect Coordinate data in webservice and pasing sqlite data in mobile
 	public class backMethodCallShare extends AsyncTask<SoapObject, SoapObject, SoapObject > {
 
+		List<Exception> exceptions = new ArrayList<Exception>();
+		
 		private final ProgressDialog dialog=new ProgressDialog(ShareFunctionTabSocialNetwork.this.getActivity());
 
+		
 		@Override
-		protected SoapObject doInBackground(SoapObject... params) {
+		protected SoapObject doInBackground(SoapObject... params){
 			
 			METHOD_NAME="CallAllShare";
 			SOAP_ACTION="http://test_bus/CallAllShare";
+			
 			
 			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
@@ -163,9 +173,9 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
                                           
                  response = (SoapObject)envelope.bodyIn;
                                                                                                           
-                 } catch (Exception e) {
-                     e.printStackTrace();
-                 }
+                 }catch (Exception e) {
+                	e.printStackTrace();
+ 		        }
 				
 			return response;
 
@@ -180,8 +190,6 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 		
 		@Override
 		protected void onPostExecute(SoapObject result) {
-			
-			
 			
 			if(getResponeShare(result)!=null){
 				
@@ -211,12 +219,7 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 					/**
 					 * add into myList
 					 */
-					myList.add(map);
-					
-					
-					
-					//myDb.insertRowShare(Integer.parseInt(numbus),Double.valueOf(PhoneId),Double.valueOf(latitude), Double.valueOf(longitude),timeShare);
-					
+					myList.add(map);					
 				}
 				
 				//show listview
@@ -226,13 +229,12 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 				ls.setAdapter(appAdapter);
 				
 				//add marker to map
-				showMarker("numbusMarkers","latitude","longitude");
-				
-				
+				showMarker("numbusMarkers","latitude","longitude");	
 				
 			}
 			
 			else{
+				
 				Toast.makeText(getActivity().getApplicationContext(),"Result Found is ==  "+ result + "", Toast.LENGTH_LONG).show();
 			}
 			
@@ -247,7 +249,6 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 		}
 			
 	}
-	
 	
 	//insert coordinate into array from web services
 	public static ShareOption[] getResponeShare(SoapObject soap){

@@ -10,10 +10,13 @@ public class SwitchChoose {
 	//get id image from number bus
 	public int imgBusFormData(int number) {
 		
-		int img=0;
+		int img=R.drawable.so0;
 		
 		switch(number){
 		
+		case 0:
+			img=R.drawable.so0;
+			break;
 		case 1:
 			img= R.drawable.numbers_1_icon;
 			break;
@@ -41,6 +44,9 @@ public class SwitchChoose {
 		case 9:
 			img= R.drawable.numbers_9_icon;
 			break;
+		case 10:
+			img= R.drawable.numbers_10_icon;
+			break;
 		}
 		
 		return img;
@@ -53,30 +59,42 @@ public class SwitchChoose {
 		int numBus=Integer.parseInt(numbus);
 		switch(numBus){
 		case 1:
-			img=R.drawable.marker1;
-			break;
-		case 2:
 			img=R.drawable._marker1;
 			break;
+		case 2:
+			img=R.drawable._marker2;
+			break;
 		case 3:
+			img=R.drawable._marker3;
 			break;
 		case 4:
+			img=R.drawable._marker4;
 			break;
 		case 5:
+			img=R.drawable._marker5;
 			break;
 		case 6:
+			img=R.drawable._marker6;
 			break;
 		case 7:
+			img=R.drawable._marker7;
 			break;
 		case 8:
+			img=R.drawable._marker8;
 			break;
 		case 9:
+			img=R.drawable._marker9;
+			break;
+			
+		case 10:
+			img=R.drawable._marker10;
 			break;
 		
 		}
 		
 		return img;
 	}
+	
 	
 	//get id image
 	public String barCodeScan(String idBarcodeScan){

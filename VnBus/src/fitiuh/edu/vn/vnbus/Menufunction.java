@@ -1,5 +1,8 @@
 package fitiuh.edu.vn.vnbus;
 
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+
 import fitiuh.edu.vn.gps.*;
 import fitiuh.edu.vn.barcode.*;
 import org.ksoap2.SoapEnvelope;
@@ -44,11 +47,12 @@ public class Menufunction extends Activity implements OnClickListener {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.100:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.108:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	GPSTracker gpsTracker;
 	ShareLocation sharelocaion;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -220,6 +224,10 @@ public class Menufunction extends Activity implements OnClickListener {
 				//share location
 				sharelocaion=new ShareLocation();
 				sharelocaion.callShare(Integer.parseInt(valid), getPhoneIdSim(), getLatitude(), getLongitude(), getTimeShare());
+				
+				//save information bus from scan into database
+				myDb.deleteAllStore();
+				myDb.insertRowStore(Integer.parseInt(valid), getTimeShare());
 			}
 			
 		}
@@ -358,7 +366,8 @@ public class Menufunction extends Activity implements OnClickListener {
 	//updata information bus: name,money.....
 	public class backMethodInfor extends AsyncTask<SoapObject, SoapObject, SoapObject >{
 		
-
+		private Exception exception;
+		private String ErrorMsg="";
 		private final ProgressDialog dialog=new ProgressDialog(Menufunction.this);
 		
 		@Override
@@ -382,10 +391,10 @@ public class Menufunction extends Activity implements OnClickListener {
                  androidHttpTransport.call(SOAP_ACTION, envelope);
                                           
                  response = (SoapObject)envelope.bodyIn;
-                                                                                                          
-                 } catch (Exception e) {
-                     e.printStackTrace();
-                 }
+                 
+            	}catch (Exception e) {
+                    e.printStackTrace();
+                }
 				
 			return response;
 		}

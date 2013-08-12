@@ -22,7 +22,7 @@ public class ShareLocation {
 	final String NAMESPACE="http://test_bus/";
 	final String METHOD_NAME="Share_Locations";
 	final String SOAP_ACTION="http://test_bus/Share_Locations";
-	final String URL="http://192.168.0.100:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.168.0.108:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	

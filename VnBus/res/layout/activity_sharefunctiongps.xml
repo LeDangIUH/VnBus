@@ -21,7 +21,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/imgnumbussociety"
-        android:text="Tuyến xe buýt" />
+        android:text="Tuyến xe buýt"
+        style="@style/txtShowticket" />
 
     <TextView
         android:id="@+id/txttimegps"
@@ -30,7 +31,8 @@
         android:layout_alignLeft="@+id/imgnumbussociety"
         android:layout_below="@+id/imgnumbussociety"
         android:layout_marginTop="48dp"
-        android:text="Thời gian:" />
+        android:text="Thời gian:" 
+        style="@style/txtShowticket"/>
 
     <TextView
         android:id="@+id/txtspeedgps"
@@ -39,26 +41,8 @@
         android:layout_alignLeft="@+id/txttimegps"
         android:layout_below="@+id/txttimegps"
         android:layout_marginTop="28dp"
-        android:text="Tốc độ:" />
-
-    <TextView
-        android:id="@+id/txtshowtimegps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/txttimegps"
-        android:layout_alignBottom="@+id/txttimegps"
-        android:layout_marginLeft="26dp"
-        android:layout_toRightOf="@+id/txtnamebusgps"
-        android:text="hh:mm:ss" />
-
-    <TextView
-        android:id="@+id/txtshowspeedgps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/txtspeedgps"
-        android:layout_alignBottom="@+id/txtspeedgps"
-        android:layout_alignLeft="@+id/txtshowtimegps"
-        android:text="...km/h" />
+        android:text="Tốc độ:" 
+        style="@style/txtShowticket"/>
 
     <Button
         android:id="@+id/btnStopsharegps"
@@ -68,5 +52,24 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
         android:text="Dừng chia sẻ vị trí " />
+
+    <TextView
+        android:id="@+id/txtshowtimegps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtspeedgps"
+        android:layout_alignRight="@+id/btnStopsharegps"
+        android:layout_marginRight="50dp"
+        android:text="hh:mm:ss" 
+        style="@style/txtShowticket"/>
+
+    <TextView
+        android:id="@+id/txtshowspeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtspeedgps"
+        android:layout_alignLeft="@+id/txtshowtimegps"
+        android:text="...km/h" 
+        style="@style/txtShowticket"/>
 
 </RelativeLayout>
