@@ -149,10 +149,7 @@ public class Menufunction extends Activity implements OnClickListener {
 		}
 		else{
 			dialogNoAcceptInternet();
-		}
-		
-		
-		
+		}	
 	}
 	
 	//check internet

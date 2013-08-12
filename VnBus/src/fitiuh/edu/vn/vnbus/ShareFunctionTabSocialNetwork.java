@@ -29,7 +29,12 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -84,31 +89,40 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 		            parent.removeView(myFragment);
 		    }
 		    try {
-		    	myFragment = inflater.inflate(R.layout.activity_sharefunctionsocietynetwork, container, false);
 		    	
-		    	openDB();
-		    	//list view
-		    	ls=(ShareHorizontaListView) myFragment.findViewById(R.id.lssocialnetwork);
-				//ls.setAdapter(new HAdapter());
+		    	boolean check=isNetworkOnline();
 				
-				//map
-				map=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();		
-				map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
-				
-				//run update share
-				StartUpdate();
-				
-				
-				//call event for listview list
-				ls.setOnItemClickListener(new OnItemClickListener() {
+				if(check==true){
+					
+					myFragment = inflater.inflate(R.layout.activity_sharefunctionsocietynetwork, container, false);
+			    	
+			    	openDB();
+			    	//list view
+			    	ls=(ShareHorizontaListView) myFragment.findViewById(R.id.lssocialnetwork);
+					//ls.setAdapter(new HAdapter());
+					
+					//map
+					map=((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();		
+					map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_SURRREY, 10));
+					
+					//run update share
+					StartUpdate();
+					
+					
+					//call event for listview list
+					ls.setOnItemClickListener(new OnItemClickListener() {
 
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						Toast.makeText(getActivity(), "alo", Toast.LENGTH_LONG).show();
-						
-					}
-				});
+						@Override
+						public void onItemClick(AdapterView<?> parent, View view,
+								int position, long id) {
+							Toast.makeText(getActivity(), "alo", Toast.LENGTH_LONG).show();
+							
+						}
+					});
+					
+				}else{
+					dialogNoAcceptInternet();
+				}
 				
 		    } catch (InflateException e) {
 		  
@@ -136,6 +150,55 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 	private void closeDB() {
 		myDb.close();
 	}
+	
+	//check internet
+	public boolean isNetworkOnline() {
+		boolean status=false;
+		try{
+		      ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+		      NetworkInfo netInfo = cm.getNetworkInfo(0);
+		      if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
+		            status= true;
+		      }else {
+		            netInfo = cm.getNetworkInfo(1);
+		            if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
+		                status= true;
+		      }
+		 }catch(Exception e){
+		        e.printStackTrace();  
+		        return false;
+		 }
+		    return status;
+	}
+	
+	public void dialogNoAcceptInternet(){
+		
+		AlertDialog.Builder alert=new AlertDialog.Builder(ShareFunctionTabSocialNetwork.this.getActivity());
+		alert.setTitle("Bạn cần kết nối internet để thực hiện!!!");
+		
+		alert.setMessage("Bạn có muốn kết nối internet? ");
+		alert.setCancelable(true);
+		alert.setIcon(R.drawable.warn);
+		alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
+			}
+		});
+		
+		alert.setNegativeButton("Cancle",new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		
+		AlertDialog alertDialog = alert.create();
+		alertDialog.show();
+	}
+
 	
 	public void StartUpdate(){
 		new backMethodCallShare().execute();
