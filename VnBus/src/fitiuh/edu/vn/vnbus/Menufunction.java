@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,13 +27,16 @@ import android.telephony.TelephonyManager;
 import android.text.format.Time;
 import android.text.style.BulletSpan;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import fitiuh.edu.vn.database.*;
 import fitiuh.edu.vn.gps.GPSTracker;
+import android.provider.Settings;
 
 public class Menufunction extends Activity implements OnClickListener {
 	
@@ -47,7 +51,7 @@ public class Menufunction extends Activity implements OnClickListener {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.108:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.241.189.26:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	GPSTracker gpsTracker;
@@ -134,11 +138,14 @@ public class Menufunction extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
+		gpsTracker=new GPSTracker(Menufunction.this);
+		
 		turnGPSOn();
 		
 		boolean check=isNetworkOnline();
+		boolean checkgps=gpsTracker.canGetLocation();
 		
-		if(check==true){
+		if(check==true && checkgps==true ){
 			//check for scan button
 			if(v.getId()==R.id.dashboard_button_payticket){
 			//instantiate ZXing integration class
@@ -146,10 +153,12 @@ public class Menufunction extends Activity implements OnClickListener {
 			//start scanning
 			scanIntegrator.initiateScan();
 			}
-		}
-		else{
+		}else if (gpsTracker.canGetLocation()==false) {
+			gpsTracker.showSettingsAlert();
+		}else{
 			dialogNoAcceptInternet();
 		}	
+		
 	}
 	
 	//check internet
@@ -702,6 +711,30 @@ public class Menufunction extends Activity implements OnClickListener {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menufunction, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+
+		switch (item.getItemId()) {
+		case R.id.IconAbout:{
+			
+			final Dialog dialog=new Dialog(Menufunction.this);
+			
+			
+			dialog.setTitle("About");
+			dialog.setContentView(R.layout.activity_about);
+			dialog.setCancelable(true);
+			
+			dialog.show();
+			break;}
+
+		default:
+			break;
+		} 
+		
+		return super.onOptionsItemSelected(item);
 	}
 	
 

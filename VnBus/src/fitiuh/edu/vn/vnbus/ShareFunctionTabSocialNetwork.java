@@ -71,7 +71,7 @@ public class ShareFunctionTabSocialNetwork extends Fragment {
 	final String NAMESPACE="http://test_bus/";
 	String METHOD_NAME;
 	String SOAP_ACTION;
-	final String URL="http://192.168.0.108:8080/BUS_PRO/Services?WSDL";
+	final String URL="http://192.241.189.26:8080/BUS_PRO/Services?WSDL";
 	SoapObject response;
 	
 	BusDBAdapter myDb;
